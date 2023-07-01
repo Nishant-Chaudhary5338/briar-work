@@ -19,7 +19,7 @@ const Section3 = () => {
               className='border p-[2px] border-teal-300  rounded-md'
             />
             <SquareRadioButton />
-            <span>On Hold</span>
+            <span>PM</span>
           </div>
         </div>
         <div className='space-x-4'>

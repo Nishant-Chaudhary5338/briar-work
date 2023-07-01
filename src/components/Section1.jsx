@@ -6,10 +6,10 @@ const Section1 = () => {
   return (
     <div className=' pt-4'>
       <div className='space-y-2'>
-        <div className='space-x-16'>
+        <div className='space-x-16 flex'>
           <span className=''>Record type:</span>
 
-          <span className=' items-center space-x-2'>
+          <span className=' flex items-center space-x-1'>
             <DropDownButton />
             <SquareRadioButton />
             <span>On Hold</span>

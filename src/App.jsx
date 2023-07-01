@@ -1,16 +1,15 @@
-import { useState } from "react";
-import Header from "./components/Header";
-import HeroSection from "./components/HeroSection";
+import React from "react";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import HeroSection from "./pages/HeroSection";
 
-function App() {
-  const [count, setCount] = useState(0);
-
+const App = () => {
   return (
-    <div className=''>
-      <Header />
-      <HeroSection />
-    </div>
+    <Routes>
+      <Route path='/' element={<LoginPage />} />
+      <Route path='/hero' element={<HeroSection />} />
+    </Routes>
   );
-}
+};
 
 export default App;

@@ -11,10 +11,11 @@ import Section1 from "./Section1";
 import Section3 from "./Section3";
 import Section4 from "./Section4";
 import Section5 from "./Sections5";
+import Section6 from "./Section6";
 
 const HeroSection = () => {
   return (
-    <div className='bg-gray-50 h-screen w-full p-6 px-20 space-y-6'>
+    <div className='bg-gray-50 h-screen w-full p-6 px-16 space-y-6'>
       <div className='sm:flex justify-between items-center'>
         <Section1 />
         <TZTable />
@@ -29,6 +30,7 @@ const HeroSection = () => {
       </div>
 
       <Section5 />
+      <Section6 />
     </div>
   );
 };

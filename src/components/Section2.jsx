@@ -3,7 +3,7 @@ import { PiMagnifyingGlassDuotone } from "react-icons/pi";
 
 const Section2 = () => {
   return (
-    <div className='flex space-x-10'>
+    <div className='flex space-x-[70px]'>
       <div>Call status:</div>
       <div className='space-x-1 flex items-center'>
         <span className='border border-teal-300 p-[2px] rounded-md'>14</span>

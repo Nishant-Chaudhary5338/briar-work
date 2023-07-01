@@ -6,7 +6,7 @@ import { IoMdCopy } from "react-icons/io";
 const Section5 = () => {
   return (
     <div className='space-y-2'>
-      <div className='flex space-x-24'>
+      <div className='flex space-x-20'>
         <span>Problem</span>
         <div className='flex space-x-1'>
           <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
@@ -23,7 +23,7 @@ const Section5 = () => {
           <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
         </div>
       </div>
-      <div className='flex space-x-28'>
+      <div className='flex space-x-[94px]'>
         <span>Cause</span>
         <div className='flex space-x-1'>
           <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
@@ -40,7 +40,7 @@ const Section5 = () => {
           <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
         </div>
       </div>
-      <div className='flex space-x-[110px]'>
+      <div className='flex space-x-[92px]'>
         <span>Repair</span>
         <div className='flex space-x-1'>
           <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>

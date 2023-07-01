@@ -7,7 +7,11 @@ module.exports = {
   
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontSize: {
+        'base': '14px',
+      },
+    },
   },
   plugins: [],
 }

@@ -4,9 +4,9 @@ import SquareRadioButton from "../small-components/SquareRadioButton";
 
 const Section1 = () => {
   return (
-    <div className=' pt-4'>
+    <div className=' py-4'>
       <div className='space-y-2'>
-        <div className='space-x-16 flex'>
+        <div className='sm:space-x-16 flex'>
           <span className=''>Record type:</span>
 
           <span className=' flex items-center space-x-1'>
@@ -29,11 +29,11 @@ const Section1 = () => {
         </div>
       </div>
       <div className='space-y-2 mt-2'>
-        <div className='space-x-[98px]'>
+        <div className='space-x-14 sm:space-x-[98px]'>
           <span className=''>Priorty</span>
           <DropDownButton />
         </div>
-        <div className='space-x-[53px]'>
+        <div className='space-x-3 sm:space-x-[53px]'>
           <span className=''>Material code</span>
           <span>
             <DropDownButton />

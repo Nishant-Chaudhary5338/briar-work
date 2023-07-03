@@ -24,7 +24,7 @@ const Section3 = () => {
         </div>
         <div className='space-x-4'>
           <span>General Description</span>
-          <span className='border border-teal-300 p-[2px] rounded-md pr-20'>
+          <span className='border border-teal-300 p-[2px] rounded-md sm:pr-20'>
             Order replacement valve
           </span>
         </div>

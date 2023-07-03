@@ -18,7 +18,7 @@ const HeroSection = () => {
   return (
     <div>
       <Header />
-      <div className='bg-gray-50 h-screen w-full p-6 px-16 space-y-6'>
+      <div className='bg-gray-50 h-screen w-full p-6 sm:px-16 space-y-6'>
         <div className='sm:flex justify-between items-center'>
           <Section1 />
           <TZTable />

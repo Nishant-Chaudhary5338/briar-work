@@ -4,7 +4,7 @@ import { PiMagnifyingGlassDuotone } from "react-icons/pi";
 const Section6 = () => {
   return (
     <div className='space-y-1 pb-4'>
-      <div className='flex space-x-[56px]'>
+      <div className='flex space-x-8 items-center sm:space-x-[56px]'>
         <span>Cost Center</span>
         <div className='flex space-x-1'>
           <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
@@ -16,7 +16,7 @@ const Section6 = () => {
           <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
         </div>
       </div>
-      <div className='flex space-x-[74px]'>
+      <div className='flex space-x-6 items-center sm:space-x-[74px]'>
         <span>Location</span>
         <div className='flex space-x-1'>
           <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
@@ -28,7 +28,7 @@ const Section6 = () => {
           <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
         </div>
       </div>
-      <div className='flex space-x-[82px]'>
+      <div className='flex space-x-12 items-center sm:space-x-[82px]'>
         <span>Tech ID</span>
         <div className='flex space-x-1'>
           <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
@@ -40,7 +40,7 @@ const Section6 = () => {
           <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
         </div>
       </div>
-      <div className='flex space-x-[72px]'>
+      <div className='flex space-x-10 items-center sm:space-x-[72px]'>
         <span>Terms ID</span>
         <div className='flex space-x-1'>
           <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
@@ -52,7 +52,7 @@ const Section6 = () => {
           <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
         </div>
       </div>
-      <div className='flex space-x-[54px]'>
+      <div className='flex space-x-[22px] items-center sm:space-x-[54px]'>
         <span>Currency ID</span>
         <div className='flex space-x-1'>
           <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>

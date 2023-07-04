@@ -1,6 +1,7 @@
 import React from "react";
 import { PiMagnifyingGlassDuotone } from "react-icons/pi";
 import SquareRadioButton from "../small-components/SquareRadioButton";
+import { LiaSave } from "react-icons/lia";
 
 const Section3 = () => {
   return (
@@ -25,10 +26,18 @@ const Section3 = () => {
         <div className='space-x-4 sm:flex items-center'>
           <span>General Description</span>
           <textarea
-            rows='3'
+            rows='4'
             cols='30'
             className='border border-[#b4ed47] focus:outline-none focus:ring-[#b4ed47] focus:border-[#b4ed47]'
           />
+          <div className='flex items-center space-x-2'>
+            <p>Save</p>
+            <LiaSave
+              size={30}
+              color='white'
+              className='bg-[#b4ed47] p-1 rounded-full'
+            />
+          </div>
         </div>
       </div>
     </div>

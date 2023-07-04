@@ -1,16 +1,27 @@
 import React from "react";
 import Card from "../components/Card";
 import { useNavigate } from "react-router-dom";
+import { RiToolsFill } from "react-icons/ri";
 
 const HomePage = () => {
   const navigate = useNavigate();
   return (
-    <div className='py-10 bg-gray-50 h-screen'>
-      <h1 className='text-5xl text-center font-semibold mb-6'>Internal Tool</h1>
-      <div className='space-y-6 flex flex-col items-center justify-center'>
-        <Card title='View' onClick={() => navigate("/hero")} />
-        <Card title='Test' />
-        <Card title='Test' />
+    <div>
+      <div className='h-12 bg-black'>
+        <h4 className='text-white text-2xl py-2 px-4 font-semibold'>My Home</h4>
+      </div>
+      <div className='bg-gray-100 h-screen p-4'>
+        <Card
+          title='Service Call Entry Update'
+          onClick={() => navigate("/hero")}
+          icon={
+            <RiToolsFill
+              size={30}
+              color='black'
+              className='bg-gray-200 p-1 rounded-full'
+            />
+          }
+        />
       </div>
     </div>
   );

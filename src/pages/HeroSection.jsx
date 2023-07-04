@@ -17,23 +17,33 @@ import Header from "../components/Header";
 const HeroSection = () => {
   return (
     <div>
-      <Header />
+      <div className='h-10 bg-[#71a311] text-white text-2xl font-semibold px-2'>
+        Service Call Entry{" "}
+      </div>
       <div className='bg-gray-50 h-screen w-full p-6 sm:px-16 space-y-6'>
-        <div className='sm:flex justify-between items-center'>
-          <Section1 />
-          <TZTable />
-        </div>
-        <Section2 />
-        <div className='sm:flex justify-between'>
+        <div className='sm:flex space-x-20 '>
+          <div className='space-y-2'>
+            <Section1 />
+            <Section2 />
+          </div>
           <div>
             <Section3 />
+          </div>
+        </div>
+        <hr className='border-[#b4ed47] my-10 py-6' />
+
+        <div className='sm:flex justify-between'>
+          <div className='space-y-4'>
             <Section4 />
+            <Section5 />
           </div>
           <CTTable />
         </div>
 
-        <Section5 />
-        <Section6 />
+        <div className='sm:flex justify-between mb-10 pb-10'>
+          <Section6 />
+          <TZTable />
+        </div>
       </div>
     </div>
   );

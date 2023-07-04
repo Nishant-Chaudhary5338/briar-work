@@ -4,7 +4,7 @@ import SquareRadioButton from "../small-components/SquareRadioButton";
 
 const Section1 = () => {
   return (
-    <div className=' py-4'>
+    <div className=''>
       <div className='space-y-2'>
         <div className='sm:space-x-16 flex'>
           <span className=''>Record type:</span>
@@ -32,7 +32,7 @@ const Section1 = () => {
         <div className='space-x-14 sm:flex items-center sm:space-x-[98px]'>
           <span className=''>Priorty</span>
           <textarea
-            rows='3'
+            rows='1'
             cols='30'
             className='border border-[#b4ed47] focus:outline-none focus:ring-[#b4ed47] focus:border-[#b4ed47]'
           />

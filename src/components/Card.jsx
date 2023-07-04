@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({ title, onClick }) => {
+const Card = ({ title, onClick, icon }) => {
   return (
-    <div>
+    <div className=''>
       <div
         onClick={onClick}
-        className='h-24 w-96 px-60 border border-[#b4ed47] flex items-center justify-center rounded-md shadow-lg'
+        className='h-[200px] w-60 flex space-y-10 flex-col items-start py-6 px-6 border border-[#b4ed47] bg-white  rounded-md shadow-lg'
       >
-        <h3 className='text-center items-center text-3xl'>{title}</h3>
+        <h3 className='text-center  text-2xl'>{title}</h3>
+        <div>{icon}</div>
       </div>
     </div>
   );

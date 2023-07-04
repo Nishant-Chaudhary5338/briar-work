@@ -4,7 +4,7 @@ import { RiArrowDownSLine } from "react-icons/ri";
 const DropDownButton = () => {
   return (
     <div className='inline-block relative'>
-      <select className='block appearance-none w-60 px-3 border border-teal-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500'>
+      <select className='block appearance-none w-60 px-3 border border-[#b4ed47] bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500'>
         <option value='option1'>Option 1</option>
         <option value='option2'>Option 2</option>
         <option value='option3'>Option 3</option>

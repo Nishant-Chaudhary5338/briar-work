@@ -17,21 +17,25 @@ const Section1 = () => {
         </div>
         <div className='space-x-16'>
           <span>Call Number</span>
-          <span className='border border-teal-300 p-[2px] rounded-md pr-20'>
+          <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
             00000075555
           </span>
         </div>
         <div className='space-x-16'>
           <span>Service Type</span>
-          <span className='border border-teal-300 p-[2px] rounded-md pr-20'>
+          <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
             M10
           </span>
         </div>
       </div>
       <div className='space-y-2 mt-2'>
-        <div className='space-x-14 sm:space-x-[98px]'>
+        <div className='space-x-14 sm:flex items-center sm:space-x-[98px]'>
           <span className=''>Priorty</span>
-          <DropDownButton />
+          <textarea
+            rows='3'
+            cols='30'
+            className='border border-[#b4ed47] focus:outline-none focus:ring-[#b4ed47] focus:border-[#b4ed47]'
+          />
         </div>
         <div className='space-x-3 sm:space-x-[53px]'>
           <span className=''>Material code</span>

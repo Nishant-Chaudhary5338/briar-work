@@ -18,7 +18,7 @@ const LoginPage = () => {
     // Simulating login logic (replace with your own authentication)
     if (username === "admin" && password === "password") {
       // Redirect to the HeroSection component on successful login
-      navigation("/hero");
+      navigation("/home");
     } else {
       setError("Invalid username or password.");
     }

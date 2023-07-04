@@ -9,52 +9,52 @@ const Section5 = () => {
       <div className='flex space-x-4 sm:space-x-20'>
         <span>Problem</span>
         <div className='flex space-x-1'>
-          <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
+          <span className='border border-[#b4ed47] p-[2px] rounded-md pr-40'></span>
           <PiMagnifyingGlassDuotone
             size={30}
-            color='#4db6ac'
-            className='border p-[2px] border-teal-300  rounded-md'
+            color='#b4ed47'
+            className='border p-[2px] border-[#b4ed47]  rounded-md'
           />
           <IoMdCopy
             size={30}
-            color='#4db6ac'
-            className='border p-[2px] border-teal-300  rounded-md'
+            color='#b4ed47'
+            className='border p-[2px] border-[#b4ed47]  rounded-md'
           />
-          <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
+          <span className='border border-[#b4ed47] p-[2px] rounded-md pr-40'></span>
         </div>
       </div>
       <div className='flex space-x-8 sm:space-x-[94px]'>
         <span>Cause</span>
         <div className='flex space-x-1'>
-          <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
+          <span className='border border-[#b4ed47] p-[2px] rounded-md pr-40'></span>
           <PiMagnifyingGlassDuotone
             size={30}
-            color='#4db6ac'
-            className='border p-[2px] border-teal-300  rounded-md'
+            color='#b4ed47'
+            className='border p-[2px] border-[#b4ed47]  rounded-md'
           />
           <IoMdCopy
             size={30}
-            color='#4db6ac'
-            className='border p-[2px] border-teal-300  rounded-md'
+            color='#b4ed47'
+            className='border p-[2px] border-[#b4ed47]  rounded-md'
           />
-          <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
+          <span className='border border-[#b4ed47] p-[2px] rounded-md pr-40'></span>
         </div>
       </div>
       <div className='flex space-x-[28px] sm:space-x-[92px]'>
         <span>Repair</span>
         <div className='flex space-x-1'>
-          <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
+          <span className='border border-[#b4ed47] p-[2px] rounded-md pr-40'></span>
           <PiMagnifyingGlassDuotone
             size={30}
-            color='#4db6ac'
-            className='border p-[2px] border-teal-300  rounded-md'
+            color='#b4ed47'
+            className='border p-[2px] border-[#b4ed47]  rounded-md'
           />
           <IoMdCopy
             size={30}
-            color='#4db6ac'
-            className='border p-[2px] border-teal-300  rounded-md'
+            color='#b4ed47'
+            className='border p-[2px] border-[#b4ed47]  rounded-md'
           />
-          <span className='border border-teal-300 p-[2px] rounded-md pr-40'></span>
+          <span className='border border-[#b4ed47] p-[2px] rounded-md pr-40'></span>
         </div>
       </div>
       <div className='space-x-20 flex'>

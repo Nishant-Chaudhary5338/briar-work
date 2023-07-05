@@ -18,6 +18,7 @@ const LoginPage = () => {
     }
 
     const access_token = localStorage.getItem("access_token");
+    const expires_in = localStorage.getItem("expires_in");
 
     if (access_token) {
       // Valid access_token exists
@@ -72,6 +73,13 @@ const LoginPage = () => {
           localStorage.setItem("expires_in", expires_in);
           console.log("New access_token saved:", access_token);
           console.log("Access token validity:", expires_in);
+
+          // Remove access_token from local storage after expires_in milliseconds
+          setTimeout(() => {
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("expires_in");
+            console.log("Access_token expired. Removed from local storage.");
+          }, expires_in * 1000);
 
           // Make API GET request with the new access_token
           console.log("6. Making API GET request with access_token");

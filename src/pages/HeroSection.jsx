@@ -16,12 +16,12 @@ import Header from "../components/Header";
 
 const HeroSection = () => {
   return (
-    <div>
-      <div className='h-10 bg-[#71a311] w-full text-white text-2xl font-semibold px-1'>
+    <div className='overflow-x-hidden'>
+      <div className='h-10 bg-[#71a311] text-white text-2xl font-semibold px-2'>
         Service Call Entry{" "}
       </div>
-      <div className='w-full px-2 py-2 sm:p-6 sm:px-16 space-y-6'>
-        <div className='sm:flex space-x-20 '>
+      <div className='bg-gray-50 h-screen w-full p-6 sm:px-16 space-y-6'>
+        <div className='sm:flex sm:space-x-20 '>
           <div className='space-y-2'>
             <Section1 />
             <Section2 />

@@ -67,7 +67,7 @@ const Section3 = () => {
             <span>PM</span>
           </div>
         </div>
-        <div className='space-x-4 sm:flex items-center'>
+        <div className='space-x-4 flex items-center'>
           <span>General Description</span>
           <textarea
             onChange={handleChange}

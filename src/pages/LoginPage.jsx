@@ -16,8 +16,9 @@ const LoginPage = () => {
       setError("Please enter a username and password.");
       return;
     }
-
-    const access_token = localStorage.getItem("access_token");
+    // remove this navigation from here after presentation
+    navigation("/home");
+    /*  const access_token = localStorage.getItem("access_token");
     const expires_in = localStorage.getItem("expires_in");
 
     if (access_token) {
@@ -113,13 +114,13 @@ const LoginPage = () => {
       } catch (error) {
         console.log("6. Error occurred while making the POST request:", error);
       }
-    }
+    } */
   };
 
   return (
-    <div className='flex flex-col justify-center items-center'>
+    <div className='container mx-auto flex flex-col justify-center items-center md:mt-0'>
       {/* Left side - Image */}
-      <div className='h-20 w-60'>
+      <div className='max-h-40 w-auto mb-10 md:mb-0'>
         <img
           src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyj4tPBkrDqJFWKXZovNHieI5xiuov4-ZXHg&usqp=CAU'
           alt='Login Image'
@@ -128,9 +129,9 @@ const LoginPage = () => {
       </div>
 
       {/* Right side - Login Form */}
-      <div className='w-1/2 flex items-center justify-center'>
+      <div className='w-full md:w-1/2 flex items-center shadow-2xl bg-gray-50 px-4 sm:mt-20 md:mt-0 py-10 rounded-lg justify-center'>
         <form onSubmit={(e) => handleLogin(e)} className='w-full max-w-md'>
-          <h2 className='text-3xl font-bold mb-4'></h2>
+          <h2 className='text-3xl font-bold mb-4'>Login</h2>
 
           {error && (
             <div className='bg-red-200 text-red-800 p-2 rounded mb-4'>
@@ -147,7 +148,7 @@ const LoginPage = () => {
               id='username'
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className='w-full p-2 border border-gray-300 rounded'
+              className='w-full px-4 py-2 border border-gray-300 rounded-lg'
             />
           </div>
 
@@ -160,13 +161,13 @@ const LoginPage = () => {
               id='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className='w-full p-2 border border-gray-300 rounded'
+              className='w-full px-4 py-2 border border-gray-300 rounded-lg'
             />
           </div>
 
           <button
             type='submit'
-            className='w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600'
+            className='w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600'
           >
             Login
           </button>

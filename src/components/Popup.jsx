@@ -10,7 +10,7 @@ const Popup = ({ onClose, onSave }) => {
 
   const handleSave = () => {
     onSave(text);
-    axios
+    /*  axios
       .post(
         "https://dms-r9vvatw2.authentication.eu10.hana.ondemand.com/oauth/token?grant_type=client_credentials",
         { description: text },
@@ -26,7 +26,7 @@ const Popup = ({ onClose, onSave }) => {
       })
       .catch((error) => {
         console.log("API request failed", error);
-      });
+      }); */
 
     onClose();
   };

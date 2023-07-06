@@ -29,7 +29,7 @@ const Section3 = () => {
     if (shortDesc === "") {
       return;
     }
-    axios
+    /* axios
       .post(
         "https://dms-r9vvatw2.authentication.eu10.hana.ondemand.com/oauth/token?grant_type=client_credentials",
         { short_description: shortDesc },
@@ -45,7 +45,7 @@ const Section3 = () => {
       })
       .catch((error) => {
         console.log("API request failed", error);
-      });
+      }); */
     setShortDesc("");
   };
   return (
@@ -84,9 +84,10 @@ const Section3 = () => {
               <Popup onClose={handleClosePopup} onSave={handleSaveText} />
             )}
 
-            <div>
+            {/*  <div>
               <p>Saved Text: {savedText}</p>
             </div>
+            */}
             <p>Save</p>
             <LiaSave
               size={30}

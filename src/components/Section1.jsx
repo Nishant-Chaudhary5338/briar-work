@@ -1,20 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import DropDownButton from "../small-components/DropDownButton";
 import SquareRadioButton from "../small-components/SquareRadioButton";
+import DateInput from "./DateInput";
 
 const Section1 = () => {
+  const options = [
+    { value: "P1-Emergency", label: "P1-Emergency" },
+    { value: "P2-Risk", label: "P2-Risk" },
+    { value: "P3-Repair/replace", label: "P3-Repair/replace" },
+  ];
+
   return (
     <div className=''>
       <div className='space-y-2'>
-        <div className='sm:space-x-16 flex'>
-          <span className=''>Record type:</span>
-
-          <span className=' flex items-center space-x-1'>
-            <DropDownButton />
-            <SquareRadioButton />
-            <span>On Hold</span>
-          </span>
-        </div>
+        <div className='sm:space-x-16 flex'></div>
         <div className='space-x-16'>
           <span>Call Number</span>
           <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
@@ -29,20 +28,14 @@ const Section1 = () => {
         </div>
       </div>
       <div className='space-y-2 mt-2'>
-        <div className='space-x-14 sm:flex items-center sm:space-x-[98px]'>
+        <div className='space-x-4 sm:flex items-center sm:space-x-[98px]'>
           <span className=''>Priorty</span>
-          <textarea
-            rows='1'
-            cols='30'
-            className='border border-[#b4ed47] focus:outline-none focus:ring-[#b4ed47] focus:border-[#b4ed47]'
-          />
+          <DropDownButton options={options} />
         </div>
-        <div className='space-x-3 sm:space-x-[53px]'>
-          <span className=''>Material code</span>
-          <span>
-            <DropDownButton />
-          </span>
-        </div>
+      </div>
+      <div className='space-y-2 mt-2 pr-20'>
+        <DateInput title='Start Date' />
+        <DateInput title='End Date' />
       </div>
     </div>
   );

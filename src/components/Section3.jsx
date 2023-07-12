@@ -63,8 +63,6 @@ const Section3 = () => {
               color='#b4ed47'
               className='border p-[2px] border-[#b4ed47] rounded-md'
             />
-            <SquareRadioButton />
-            <span>PM</span>
           </div>
         </div>
         <div className='space-x-4 flex items-center'>

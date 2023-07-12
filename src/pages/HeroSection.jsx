@@ -24,7 +24,6 @@ const HeroSection = () => {
         <div className='sm:flex sm:space-x-20 '>
           <div className='space-y-2'>
             <Section1 />
-            <Section2 />
           </div>
           <div>
             <Section3 />

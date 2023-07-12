@@ -16,12 +16,36 @@ const LoginPage = () => {
       setError("Please enter a username and password.");
       return;
     }
-    // remove this navigation from here after presentation
-    navigation("/home");
-    /*  const access_token = localStorage.getItem("access_token");
+
+    const access_token = localStorage.getItem("access_token");
     const expires_in = localStorage.getItem("expires_in");
 
-    if (access_token) {
+    try {
+      const getResponse = await axios.post(
+        "https://oauthasservices-dk3zgb7znv.ap1.hana.ondemand.com/oauth2/api/v1/token?grant_type=client_credentials",
+        null,
+        {
+          headers: {
+            Authorization:
+              "Basic ZThlNDMxNDMtYWJkZi0zYjk2LWIxMjEtYzg3NDEzMjVhMTBkOmhBNnRMVDhRIXFvP0k5M2FxNEJJ",
+          },
+        },
+      );
+      if (getResponse.status === 200) {
+        console.log("Status 200 OK, successfull call");
+        const { access_token, expires_in } = response.data;
+        // Save the new access_token and its validity in local storage
+        localStorage.setItem("access_token", access_token);
+        localStorage.setItem("expires_in", expires_in);
+        console.log("New access_token saved:", access_token);
+        console.log("Access token validity:", expires_in);
+        //navigation("/home");
+      }
+    } catch (e) {
+      console.log(e, "api call failed");
+    }
+
+    /*if (access_token) {
       // Valid access_token exists
       console.log("1. Existing access_token found:", access_token);
       try {
@@ -50,7 +74,9 @@ const LoginPage = () => {
     } else {
       // No access_token found
       console.log("1. No existing access_token found.");
-      console.log("3. Making POST API request to fetch new token");
+      console.log(
+        "3. Making POST API request to fetch new token via https://dms-r9vvatw2.authentication.eu10.hana.ondemand.com/oauth/token?grant_type=client_credentials",
+      );
 
       try {
         const response = await axios.post(
@@ -64,10 +90,14 @@ const LoginPage = () => {
           },
         );
 
-        console.log("4. Made POST API request for fetching token");
+        console.log(
+          "4. Made POST API request for fetching token via https://dms-r9vvatw2.authentication.eu10.hana.ondemand.com/oauth/token?grant_type=client_credentials",
+        );
 
         if (response.status === 200) {
-          console.log("5. POST request successful");
+          console.log(
+            "5. POST request successful via https://dms-r9vvatw2.authentication.eu10.hana.ondemand.com/oauth/token?grant_type=client_credentials",
+          );
           const { access_token, expires_in } = response.data;
           // Save the new access_token and its validity in local storage
           localStorage.setItem("access_token", access_token);
@@ -75,18 +105,26 @@ const LoginPage = () => {
           console.log("New access_token saved:", access_token);
           console.log("Access token validity:", expires_in);
 
+          // remove access_token
+
           // Remove access_token from local storage after expires_in milliseconds
-          setTimeout(() => {
-            localStorage.removeItem("access_token");
-            localStorage.removeItem("expires_in");
-            console.log("Access_token expired. Removed from local storage.");
-          }, expires_in * 1000);
+          const removeExpiredToken = () => {
+            const expires_in = localStorage.getItem("expires_in");
+            const expirationTime = parseInt(expires_in) * 1000; // Convert expires_in to milliseconds
+
+            setTimeout(() => {
+              localStorage.removeItem("access_token");
+              localStorage.removeItem("expires_in");
+              console.log("Access_token expired. Removed from local storage.");
+            }, expirationTime);
+          };
+          removeExpiredToken();
 
           // Make API GET request with the new access_token
           console.log("6. Making API GET request with access_token");
 
           try {
-            const getResponse = await axios.get(
+            const getResponse = await axios.post(
               "https://api-sdm-di.cfapps.eu10.hana.ondemand.com/browser/SAFEX_INDIA_DEV_CMIS1/?repository_id =SAFEX_INDIA_DEV_CMIS1&cmisSelector=query&q=SELECT cmis:objectId, cmis:name FROM cmis:folder",
               {
                 headers: {
@@ -114,7 +152,7 @@ const LoginPage = () => {
       } catch (error) {
         console.log("6. Error occurred while making the POST request:", error);
       }
-    } */
+    }*/
   };
 
   return (

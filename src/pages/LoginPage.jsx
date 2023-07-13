@@ -17,17 +17,52 @@ const LoginPage = () => {
       return;
     }
 
-    const access_token = localStorage.getItem("access_token");
+    const getResponse = await axios.get(
+      "https://oauthasservices-dk3zgb7znv.ap1.hana.ondemand.com/oauth2/api/v1/token?grant_type=client_credentials",
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+
+          Authorization:
+            "Basic ZThlNDMxNDMtYWJkZi0zYjk2LWIxMjEtYzg3NDEzMjVhMTBkOmhBNnRMVDhRIXFvP0k5M2FxNEJJ",
+        },
+      },
+    );
+    /* let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: "https://oauthasservices-dk3zgb7znv.ap1.hana.ondemand.com/oauth2/api/v1/token?grant_type=client_credentials",
+      headers: {
+        mode: "cors",
+        Authorization:
+          "Basic ZThlNDMxNDMtYWJkZi0zYjk2LWIxMjEtYzg3NDEzMjVhMTBkOmhBNnRMVDhRIXFvP0k5M2FxNEJJ",
+
+        "Content-Type": "application/json",
+      },
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        navigation("/home");
+      })
+      .catch((error) => {
+        console.log(error);
+      }); */
+
+    /* const access_token = localStorage.getItem("access_token");
     const expires_in = localStorage.getItem("expires_in");
 
     try {
       const getResponse = await axios.post(
         "https://oauthasservices-dk3zgb7znv.ap1.hana.ondemand.com/oauth2/api/v1/token?grant_type=client_credentials",
-        null,
+
         {
           headers: {
             Authorization:
               "Basic ZThlNDMxNDMtYWJkZi0zYjk2LWIxMjEtYzg3NDEzMjVhMTBkOmhBNnRMVDhRIXFvP0k5M2FxNEJJ",
+            "Content-Type": "application/json",
           },
         },
       );
@@ -43,7 +78,7 @@ const LoginPage = () => {
       }
     } catch (e) {
       console.log(e, "api call failed");
-    }
+    } */
 
     /*if (access_token) {
       // Valid access_token exists

@@ -20,16 +20,26 @@ const LoginPage = () => {
     const access_token = localStorage.getItem("access_token");
     const expires_in = localStorage.getItem("expires_in");
 
-    try {
+    const url = "http://localhost:3002/api/token"; // Replace with your API endpoint URL
+
+    axios
+      .get(url, null)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("Access Token:", response.data.accessToken);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    /*try {
       const getResponse = await axios.post(
         "https://oauthasservices-dk3zgb7znv.ap1.hana.ondemand.com/oauth2/api/v1/token?grant_type=client_credentials",
-        null,
         {
-          headers: {
-            Authorization:
-              "Basic ZThlNDMxNDMtYWJkZi0zYjk2LWIxMjEtYzg3NDEzMjVhMTBkOmhBNnRMVDhRIXFvP0k5M2FxNEJJ",
-          },
-        },
+          Authorization:
+            "Basic ZThlNDMxNDMtYWJkZi0zYjk2LWIxMjEtYzg3NDEzMjVhMTBkOmhBNnRMVDhRIXFvP0k5M2FxNEJJ",
+        }
       );
       if (getResponse.status === 200) {
         console.log("Status 200 OK, successfull call");

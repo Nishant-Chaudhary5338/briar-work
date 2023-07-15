@@ -5,11 +5,15 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "nodemon server.js"
   },
   "dependencies": {
     "@coreui/coreui": "^4.2.6",
     "axios": "^1.4.0",
+    "base64-js": "^1.5.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-icons": "^4.10.1",

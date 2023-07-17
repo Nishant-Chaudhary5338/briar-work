@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
+import SquareRadioButton from "./SquareRadioButton";
 
-const DropDownButton = ({ options }) => {
-  const [selectedValue, setSelectedValue] = useState(null);
+const DropDownButton = ({ onChange }) => {
+  const [selectedValue, setSelectedValue] = useState("P1");
 
   useEffect(() => {
-    setSelectedValue("P1-Emergency");
-  }, []);
+    onChange(selectedValue);
+  }, [onChange, selectedValue]);
 
   const handleDropdownChange = (event) => {
     setSelectedValue(event.target.value);
   };
+
+  const options = [
+    { value: "P1", label: "P1-Emergency" },
+    { value: "P2", label: "P2-Risk" },
+    { value: "P3", label: "P3-Repair/replace" },
+  ];
 
   return (
     <div className='flex items-center'>
@@ -30,25 +37,7 @@ const DropDownButton = ({ options }) => {
           <RiArrowDownSLine className='text-gray-500' />
         </div>
       </div>
-      {selectedValue === "P1-Emergency" ? (
-        <div className='inline-flex items-center ml-2'>
-          <input
-            type='radio'
-            className='appearance-none w-4 h-4 border border-gray-400 rounded-sm checked:bg-blue-500 checked:border-transparent focus:outline-none'
-            checked={true}
-            onChange={() => {}}
-          />
-        </div>
-      ) : (
-        <div className='inline-flex items-center ml-2'>
-          <input
-            type='radio'
-            className='appearance-none w-4 h-4 border border-gray-400 rounded-sm checked:bg-blue-500 checked:border-transparent focus:outline-none'
-            checked={false}
-            onChange={() => {}}
-          />
-        </div>
-      )}
+      <SquareRadioButton selectedValue={selectedValue === "P1"} />
     </div>
   );
 };

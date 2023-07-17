@@ -27,6 +27,7 @@ const LoginPage = () => {
       .then((response) => {
         if (response.status === 200) {
           console.log("Access Token:", response.data.accessToken);
+          navigation("home");
         }
       })
       .catch((error) => {

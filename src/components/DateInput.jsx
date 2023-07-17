@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const DateInput = ({ title }) => {
+const DateInput = ({ title, onDateChange, reset }) => {
   const [selectedDate, setSelectedDate] = useState("");
+
+  useEffect(() => {
+    if (reset) {
+      setSelectedDate("");
+    }
+  }, [reset]);
 
   const handleInputClick = () => {
     if (selectedDate) {
       setSelectedDate("");
+      onDateChange(""); // Clear the selected date
     } else {
       const currentDate = new Date().toISOString().slice(0, 16);
       setSelectedDate(currentDate);
+      onDateChange(currentDate); // Call the callback function with the selected date
     }
   };
 

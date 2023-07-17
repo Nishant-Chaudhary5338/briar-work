@@ -13,6 +13,7 @@ import Section4 from "../components/Section4";
 import Section5 from "../components/Sections5";
 import Section6 from "../components/Section6";
 import Header from "../components/Header";
+import ServiceInput from "../components/ServiceInput";
 
 const HeroSection = () => {
   return (
@@ -21,27 +22,24 @@ const HeroSection = () => {
         Service Call Entry{" "}
       </div>
       <div className='bg-gray-50 h-screen w-full p-6 sm:px-16 space-y-6'>
-        <div className='sm:flex sm:space-x-20 '>
+        <div className='sm:flex-col sm:space-x-20 '>
           <div className='space-y-2'>
-            <Section1 />
+            <ServiceInput />
           </div>
-          <div>
-            <Section3 />
-          </div>
-        </div>
-        <hr className='border-[#b4ed47] my-10 py-6' />
+          <hr className='border-[#b4ed47] my-10 py-6' />
 
-        <div className='sm:flex justify-between'>
-          <div className='space-y-4'>
-            <Section4 />
-            <Section5 />
+          <div className='sm:flex justify-between'>
+            <div className='space-y-4'>
+              <Section4 />
+              <Section5 />
+            </div>
+            <CTTable />
           </div>
-          <CTTable />
-        </div>
 
-        <div className='sm:flex justify-between mb-10 pb-10'>
-          <Section6 />
-          <TZTable />
+          <div className='sm:flex justify-between mb-10 pb-10'>
+            <Section6 />
+            <TZTable />
+          </div>
         </div>
       </div>
     </div>

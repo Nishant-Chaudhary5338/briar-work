@@ -6,6 +6,7 @@ import { BiSolidPencil } from "react-icons/bi";
 import { LiaSave } from "react-icons/lia";
 import Popup from "./Popup";
 import { createServiceEntry } from "../api/serviceEntry";
+import SuccessPopup from "../small-components/SuccessPopup";
 
 const ServiceInput = () => {
   const [callNumber, setCallNumber] = useState("");
@@ -16,7 +17,9 @@ const ServiceInput = () => {
   const [savedText, setSavedText] = useState("");
   const [shortDesc, setShortDesc] = useState("");
   const [equipmentNo, setEquipmentNo] = useState("");
-  const [resetDateInput, setResetDateInput] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [notificationNo, setNotificationNo] = useState("");
+
   const options = [
     { value: "1", label: "P1-Emergency" },
     { value: "2", label: "P2-Risk" },
@@ -59,10 +62,17 @@ const ServiceInput = () => {
       .then((response) => {
         console.log(response);
         console.log(data);
+        if (response.success && response.notificationNo) {
+          setNotificationNo(response.notificationNo);
+          setShowSuccessPopup(true);
+        }
       })
       .catch((error) => {
         console.error(error);
       });
+  };
+  const handleCloseSuccessPopup = () => {
+    setShowSuccessPopup(false);
   };
 
   const handleOptionChange = (option) => {
@@ -159,6 +169,12 @@ const ServiceInput = () => {
                 className='bg-[#b4ed47] p-1 rounded-full'
                 onClick={handleSendResponse}
               />
+              {showSuccessPopup && (
+                <SuccessPopup
+                  notificationNo={notificationNo}
+                  onClose={handleCloseSuccessPopup}
+                />
+              )}
             </div>
           </div>
         </div>

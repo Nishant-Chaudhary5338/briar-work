@@ -7,7 +7,7 @@ const headers = {
   Authorization: "Basic UzAwMjQ1MTMxNTg6U2NfYmFua0AxMjM=",
 };
 
-const createServiceEntry = async (data) => {
+export const createServiceEntry = async (data) => {
   try {
     const response = await axios.post(`${BASE_URL}/api/service_entry`, data, {
       headers,
@@ -18,4 +18,4 @@ const createServiceEntry = async (data) => {
   }
 };
 
-export { createServiceEntry };
+

@@ -18,9 +18,9 @@ const ServiceInput = () => {
   const [equipmentNo, setEquipmentNo] = useState("");
   const [resetDateInput, setResetDateInput] = useState(false);
   const options = [
-    { value: "P1", label: "P1-Emergency" },
-    { value: "P2", label: "P2-Risk" },
-    { value: "P3", label: "P3-Repair/replace" },
+    { value: "1", label: "P1-Emergency" },
+    { value: "2", label: "P2-Risk" },
+    { value: "3", label: "P3-Repair/replace" },
   ];
 
   const handleOpenPopup = () => {
@@ -43,13 +43,13 @@ const ServiceInput = () => {
     const data = {
       Header: {
         CreatedBy: "p001",
-        ServiceType: "p1",
+        ServiceType: "P1",
         Priority: selectedOption,
         MatCode: "",
         CallStat: callNumber,
         EquipNo: equipmentNo,
         ZendD: startDate,
-        ZendT: endDate,
+        ZendT: "15:33:25",
         GenDesc1: shortDesc,
         GenDesc: savedText,
       },
@@ -59,13 +59,6 @@ const ServiceInput = () => {
       .then((response) => {
         console.log(response);
         console.log(data);
-        setCallNumber("");
-        setStartDate("");
-        setEndDate("");
-        setSelectedOption(null);
-        setSavedText("");
-        setShortDesc("");
-        setEquipmentNo("");
       })
       .catch((error) => {
         console.error(error);

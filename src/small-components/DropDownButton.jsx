@@ -3,7 +3,7 @@ import { RiArrowDownSLine } from "react-icons/ri";
 import SquareRadioButton from "./SquareRadioButton";
 
 const DropDownButton = ({ onChange }) => {
-  const [selectedValue, setSelectedValue] = useState("P1");
+  const [selectedValue, setSelectedValue] = useState("1");
 
   useEffect(() => {
     onChange(selectedValue);
@@ -14,9 +14,9 @@ const DropDownButton = ({ onChange }) => {
   };
 
   const options = [
-    { value: "P1", label: "P1-Emergency" },
-    { value: "P2", label: "P2-Risk" },
-    { value: "P3", label: "P3-Repair/replace" },
+    { value: "1", label: "P1-Emergency" },
+    { value: "2", label: "P2-Risk" },
+    { value: "3", label: "P3-Repair/replace" },
   ];
 
   return (
@@ -37,7 +37,7 @@ const DropDownButton = ({ onChange }) => {
           <RiArrowDownSLine className='text-gray-500' />
         </div>
       </div>
-      <SquareRadioButton selectedValue={selectedValue === "P1"} />
+      <SquareRadioButton selectedValue={selectedValue === "1"} />
     </div>
   );
 };

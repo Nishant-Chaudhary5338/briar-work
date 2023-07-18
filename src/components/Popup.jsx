@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 const Popup = ({ onClose, onSave }) => {
   const [text, setText] = useState("");
@@ -10,24 +9,6 @@ const Popup = ({ onClose, onSave }) => {
 
   const handleSave = () => {
     onSave(text);
-    /*  axios
-      .post(
-        "https://dms-r9vvatw2.authentication.eu10.hana.ondemand.com/oauth/token?grant_type=client_credentials",
-        { description: text },
-        {
-          headers: {
-            Authorization:
-              "Basic c2ItNzhmNGFiNWQtNGZkYy00MTJhLThmZGEtOGRiZDM3OWRlMjMzIWIyMDE3ODJ8c2RtLWRpLVNETV9ESV9QUk9ELXByb2QhYjQxMDY0OlVzS3hRbmI3elFvSGF6Z1c3b0tlek42R0Fabz0=",
-          },
-        },
-      )
-      .then((response) => {
-        console.log("API request successful", response.status);
-      })
-      .catch((error) => {
-        console.log("API request failed", error);
-      }); */
-
     onClose();
   };
 

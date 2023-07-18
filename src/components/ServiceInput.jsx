@@ -7,6 +7,7 @@ import { LiaSave } from "react-icons/lia";
 import Popup from "./Popup";
 import { createServiceEntry } from "../api/serviceEntry";
 import SuccessPopup from "../small-components/SuccessPopup";
+import ErrorPopup from "../small-components/ErrorPopup";
 
 const ServiceInput = () => {
   const [callNumber, setCallNumber] = useState("");
@@ -19,6 +20,8 @@ const ServiceInput = () => {
   const [equipmentNo, setEquipmentNo] = useState("");
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [notificationNo, setNotificationNo] = useState("");
+  const [errorPopup, setErrorPopup] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const options = [
     { value: "1", label: "P1-Emergency" },
@@ -65,14 +68,28 @@ const ServiceInput = () => {
         if (response.success && response.notificationNo) {
           setNotificationNo(response.notificationNo);
           setShowSuccessPopup(true);
+          setSelectedOption("");
+          setCallNumber("");
+          setEquipmentNo("");
+          setShortDesc("");
+          setSavedText("");
+        } else {
+          setErrorMessage(response.error);
+          setErrorPopup(true);
         }
       })
       .catch((error) => {
         console.error(error);
+        setErrorMessage("API request failed");
+        setErrorPopup(true);
       });
   };
   const handleCloseSuccessPopup = () => {
     setShowSuccessPopup(false);
+  };
+
+  const handleCloseErrorPopup = () => {
+    setErrorPopup(false);
   };
 
   const handleOptionChange = (option) => {
@@ -173,6 +190,12 @@ const ServiceInput = () => {
                 <SuccessPopup
                   notificationNo={notificationNo}
                   onClose={handleCloseSuccessPopup}
+                />
+              )}
+              {errorPopup && (
+                <ErrorPopup
+                  message={errorMessage}
+                  onClose={handleCloseErrorPopup}
                 />
               )}
             </div>

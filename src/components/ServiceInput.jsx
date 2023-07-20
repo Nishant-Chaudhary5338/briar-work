@@ -24,8 +24,8 @@ const ServiceInput = () => {
   const [errorPopup, setErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [searchPopup, setSearchPopup] = useState(false);
-  const handleSelectEquipment = (selectedEquipment) => {
-    setEquipmentNo(selectedEquipment); // Set the equipmentNo state with the selectedEquipment value
+  const handleSelectEquipment = (equipmentNo) => {
+    setEquipmentNo(equipmentNo); // Set the equipment number in the state of the parent component
   };
 
   const handleSearchOpenPopup = () => {
@@ -145,6 +145,7 @@ const ServiceInput = () => {
         <div className='space-y-2 mt-2'>
           <div className='space-x-4 sm:flex items-center sm:space-x-[98px]'>
             <span className=''>Priority</span>
+
             <DropDownButton
               value={selectedOption}
               onChange={handleOptionChange}

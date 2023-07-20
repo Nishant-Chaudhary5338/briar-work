@@ -20,7 +20,7 @@ const DropDownButton = ({ onChange }) => {
   ];
 
   return (
-    <div className='flex items-center'>
+    <div className='flex items-center space-x-2'>
       <div className='relative'>
         <select
           value={selectedValue}
@@ -38,6 +38,7 @@ const DropDownButton = ({ onChange }) => {
         </div>
       </div>
       <SquareRadioButton selectedValue={selectedValue === "1"} />
+      <span className=''>BreakDown Indicator</span>
     </div>
   );
 };

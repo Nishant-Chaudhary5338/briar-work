@@ -10,7 +10,7 @@ const SquareRadioButton = ({ selectedValue }) => {
   return (
     <div className='inline-flex items-center'>
       <input
-        type='radio'
+        type='checkbox'
         className='appearance-none w-4 h-4 border border-gray-400 rounded-sm checked:bg-blue-500 checked:border-transparent focus:outline-none'
         checked={checked}
         readOnly

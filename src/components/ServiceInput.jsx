@@ -8,6 +8,7 @@ import Popup from "./Popup";
 import { createServiceEntry } from "../api/serviceEntry";
 import SuccessPopup from "../small-components/SuccessPopup";
 import ErrorPopup from "../small-components/ErrorPopup";
+import SearchPopup from "../small-components/SearchPopup";
 
 const ServiceInput = () => {
   const [callNumber, setCallNumber] = useState("");
@@ -22,6 +23,18 @@ const ServiceInput = () => {
   const [notificationNo, setNotificationNo] = useState("");
   const [errorPopup, setErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [searchPopup, setSearchPopup] = useState(false);
+  const handleSelectEquipment = (selectedEquipment) => {
+    setEquipmentNo(selectedEquipment); // Set the equipmentNo state with the selectedEquipment value
+  };
+
+  const handleSearchOpenPopup = () => {
+    setSearchPopup(true);
+  };
+
+  const handleSearchClosePopup = () => {
+    setSearchPopup(false);
+  };
 
   const options = [
     { value: "1", label: "P1-Emergency" },
@@ -155,11 +168,20 @@ const ServiceInput = () => {
               className='border border-[#b4ed47] p-[2px] rounded-md pr-16'
             ></input>
             <div className='flex items-center space-x-1'>
-              <PiMagnifyingGlassDuotone
-                size={30}
-                color='#b4ed47'
-                className='border p-[2px] border-[#b4ed47] rounded-md'
-              />
+              <button onClick={handleSearchOpenPopup}>
+                <PiMagnifyingGlassDuotone
+                  size={30}
+                  color='#b4ed47'
+                  className='border p-[2px] border-[#b4ed47] rounded-md'
+                />
+              </button>
+              {/* Render the SearchPopup */}
+              {searchPopup && (
+                <SearchPopup
+                  onClose={handleSearchClosePopup}
+                  onSelectEquipment={handleSelectEquipment}
+                />
+              )}
             </div>
           </div>
           <div className='space-x-4 flex items-center'>

@@ -16,14 +16,18 @@ const LoginPage = () => {
       setError("Please enter a username and password.");
       return;
     }
+    console.log(username, password);
 
-    const access_token = localStorage.getItem("access_token");
-    const expires_in = localStorage.getItem("expires_in");
-
-    const url = "http://localhost:3002/api/token"; // Replace with your API endpoint URL
+    const url = `http://localhost:3002/api/token`; // Replace with your API endpoint URL
+    const base64Credentials = window.btoa(`${username}:${password}`);
+    console.log("base64", base64Credentials);
 
     axios
-      .get(url, null)
+      .get(url, {
+        headers: {
+          Authorization: `Basic ${base64Credentials}`,
+        },
+      })
       .then((response) => {
         if (response.status === 200) {
           console.log("Access Token:", response.data.accessToken);

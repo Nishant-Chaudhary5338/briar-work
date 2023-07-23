@@ -21,6 +21,8 @@ const LoginPage = () => {
     const url = `http://localhost:3002/api/token`; // Replace with your API endpoint URL
     const base64Credentials = window.btoa(`${username}:${password}`);
     console.log("base64", base64Credentials);
+    localStorage.setItem("base64", base64Credentials);
+    console.log("base64", base64Credentials);
 
     axios
       .get(url, {
@@ -31,6 +33,16 @@ const LoginPage = () => {
       .then((response) => {
         if (response.status === 200) {
           console.log("Access Token:", response.data.accessToken);
+          // Save the access_token in localStorage
+          localStorage.setItem("access_token", response.data.accessToken);
+
+          // Set a timeout to remove the access_token from localStorage after 2 minutes
+          setTimeout(() => {
+            localStorage.removeItem("access_token");
+            console.log("Access_token expired. Removed from local storage.");
+          }, 1 * 60 * 1000); // 2 minutes in milliseconds
+
+          console.log(response.data);
           navigation("home");
         }
       })

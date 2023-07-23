@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 
 import EntrySection from "./pages/EntrySection";
 import UpdateSection from "./pages/UpdateSection";
+import NotificationTest from "./components/NotificationTest";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Route path='/entry' element={<EntrySection />} />
       <Route path='/update' element={<UpdateSection />} />
       <Route path='/home' element={<HomePage />} />
+      <Route path='/list' element={<NotificationTest />} />
     </Routes>
   );
 };

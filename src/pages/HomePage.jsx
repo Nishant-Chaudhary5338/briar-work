@@ -25,7 +25,7 @@ const HomePage = () => {
         />
         <Card
           title='Service Call Update'
-          onClick={() => navigate("/update")}
+          onClick={() => navigate("/list")}
           icon={
             <MdUpdate
               size={30}

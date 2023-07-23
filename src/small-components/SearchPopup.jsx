@@ -11,8 +11,19 @@ const SearchPopup = ({ onClose, onSelectEquipment }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Get the access_token from localStorage
+        const accessToken = localStorage.getItem("access_token");
+
         const response = await axios.get(
           "http://localhost:3002/api/help_equipment",
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`, // Add the access_token to the headers
+              "Content-Type": "application/json",
+              Cookie:
+                "JSESSIONID=3B48995A12DF2C9778BD76BD323DEA8AB1BEC7EAD24953B347FA944140687163; JTENANTSESSIONID_qpbplr2kwe=zY80O04wxtcAFo1%2BU2njdEbh3LxTRDkXRNfwi6em50o%3D; BIGipServerl201102iflmapavshcip.factoryap1.customdomain=!furmO4ClGSrZAsGyprTQI/c8TWu59E2HD4QjA30q9+HWbhxBI+tJVjk3P+TSl0VlLlqnBZiyMFw7NSs=; sap-usercontext=sap-client=300",
+            },
+          },
         );
         setData(response.data.znotifc_epqui_helpType);
         setLoading(false);

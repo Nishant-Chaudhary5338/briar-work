@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { PiMagnifyingGlassDuotone } from "react-icons/pi";
+import TokenExpiredPopup from "./TokenExpiredPopup";
 
 const SearchPopup = ({ onClose, onSelectEquipment }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedEquipment, setSelectedEquipment] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [showTokenExpiredPopup, setShowTokenExpiredPopup] = useState(false); // State to show/hide the popup
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +32,7 @@ const SearchPopup = ({ onClose, onSelectEquipment }) => {
       } catch (error) {
         console.error("Error:", error);
         setLoading(false);
+        setShowTokenExpiredPopup(true);
       }
     };
 
@@ -58,6 +61,7 @@ const SearchPopup = ({ onClose, onSelectEquipment }) => {
       className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'
       style={{ overflowY: "auto" }}
     >
+      {showTokenExpiredPopup && <TokenExpiredPopup />}{" "}
       <div
         className='bg-white w-96 p-6 rounded-md'
         onClick={(e) => e.stopPropagation()}

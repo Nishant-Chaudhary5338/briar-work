@@ -40,7 +40,7 @@ const LoginPage = () => {
           setTimeout(() => {
             localStorage.removeItem("access_token");
             console.log("Access_token expired. Removed from local storage.");
-          }, 1 * 60 * 1000); // 2 minutes in milliseconds
+          }, 10 * 60 * 1000); // 2 minutes in milliseconds
 
           console.log(response.data);
           navigation("home");

@@ -22,7 +22,7 @@ const LogoutButton = () => {
       <span>LogOut</span>
       <span>
         {" "}
-        <MdLogout />
+        <MdLogout color='white' />
       </span>
     </button>
   );

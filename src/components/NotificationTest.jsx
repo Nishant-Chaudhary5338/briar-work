@@ -3,7 +3,7 @@ import axios from "axios";
 import TokenExpiredPopup from "../small-components/TokenExpiredPopup";
 import { useNavigate } from "react-router-dom";
 import LogoutButton from "../small-components/LogoutButton";
-
+import LoadingSpinner from "../small-components/LoadingSpinner";
 const NotificationTest = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -95,11 +95,11 @@ const NotificationTest = () => {
         <LogoutButton />
       </div>
       {loading ? (
-        <p>Loading...</p>
+        <LoadingSpinner text='Loading...' />
       ) : (
         <div className='m-10 p-10'>
           <table className='table-fixed w-full border-collapse border border-[#b4ed47]'>
-            <thead className='bg-gray-100'>
+            <thead className=''>
               <tr>
                 <th
                   className='w-1/6 p-4 border border-[#b4ed47]'
@@ -137,7 +137,7 @@ const NotificationTest = () => {
               {sortedData().map((item) => (
                 <tr
                   key={item.Notification}
-                  className='hover:bg-gray-50 text-center'
+                  className='hover:bg-[#b4ed47] text-center'
                   onClick={() => handleRowClick(item.Notification)} // Pass the NotifNumber from the clicked row
                 >
                   <td className='p-4 border border-[#b4ed47]'>

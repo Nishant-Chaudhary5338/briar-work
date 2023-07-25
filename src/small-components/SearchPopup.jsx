@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { PiMagnifyingGlassDuotone } from "react-icons/pi";
 import TokenExpiredPopup from "./TokenExpiredPopup";
+import LoadingSpinner from "./LoadingSpinner";
 
 const SearchPopup = ({ onClose, onSelectEquipment }) => {
   const [data, setData] = useState([]);
@@ -82,7 +83,7 @@ const SearchPopup = ({ onClose, onSelectEquipment }) => {
         </div>
         <div className='bg-gray-50 mt-4'>
           {loading ? (
-            <p>Loading...</p>
+            <LoadingSpinner text='Loading...' />
           ) : (
             <div style={{ width: "100%" }}>
               <table className='table-fixed'>

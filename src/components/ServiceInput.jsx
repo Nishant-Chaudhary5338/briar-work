@@ -128,13 +128,14 @@ const ServiceInput = () => {
         <div className='sm:space-x-16 flex'></div>
         <div>
           <div className='space-x-16'>
-            <label htmlFor='callNumber'>Call Number</label>
+            {/*<label htmlFor='callNumber'>Call Number</label>
             <input
               id='CallNumber'
               value={callNumber}
               onChange={handleCallNumber}
               className='border border-[#b4ed47] p-[2px] rounded-md pr-20'
             ></input>
+  */}
           </div>
           <div className='space-x-16 mt-2'>
             <span>Service Type</span>

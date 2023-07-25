@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TokenExpiredPopup from "../small-components/TokenExpiredPopup";
 import { useNavigate } from "react-router-dom";
+import LogoutButton from "../small-components/LogoutButton";
 
 const NotificationTest = () => {
   const [data, setData] = useState([]);
@@ -87,9 +88,12 @@ const NotificationTest = () => {
     <div>
       {showTokenExpiredPopup && <TokenExpiredPopup />}{" "}
       {/* Show the TokenExpiredPopup when showTokenExpiredPopup is true */}
-      <h1 className="className='h-10 bg-[#71a311] text-white text-2xl font-semibold px-2">
-        List of All Notifications
-      </h1>
+      <div className='h-12 bg-[#71a311] items-center flex justify-between px-2'>
+        <h1 className='text-white text-2xl font-semibold '>
+          List of All Notifications
+        </h1>
+        <LogoutButton />
+      </div>
       {loading ? (
         <p>Loading...</p>
       ) : (

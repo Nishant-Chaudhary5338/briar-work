@@ -6,6 +6,7 @@ import TZTable from "../components/TZTable";
 import CTTable from "../components/CTTable";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import LogoutButton from "../small-components/LogoutButton";
 const UpdateSection = () => {
   const [responseData, setResponseData] = useState(null);
   const { NotificationNumber } = useParams();
@@ -37,8 +38,11 @@ const UpdateSection = () => {
 
   return (
     <div className=''>
-      <div className='h-10 bg-[#71a311] text-white text-2xl font-semibold px-2'>
-        Service Call Update of - {NotificationNumber}
+      <div className='h-12 bg-[#71a311] items-center flex justify-between px-2'>
+        <h1 className='text-white text-2xl font-semibold '>
+          Service Update of Notification - {NotificationNumber}
+        </h1>
+        <LogoutButton />
       </div>
       <div className='px-10'>
         <div className='sm:flex justify-between'>

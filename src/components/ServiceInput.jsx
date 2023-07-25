@@ -59,9 +59,10 @@ const ServiceInput = () => {
   };
 
   const handleSendResponse = () => {
+    const createdBy = localStorage.getItem("username");
     const data = {
       Header: {
-        CreatedBy: "p001",
+        CreatedBy: createdBy,
         ServiceType: "P1",
         Priority: selectedOption,
         MatCode: "",

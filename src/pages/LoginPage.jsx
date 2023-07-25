@@ -17,6 +17,11 @@ const LoginPage = () => {
       return;
     }
     console.log(username, password);
+    localStorage.setItem("username", username);
+    setTimeout(() => {
+      localStorage.removeItem("username");
+      console.log("Access_token expired. Removed from local storage.");
+    }, 30 * 60 * 1000); // 2 minutes in milliseconds
 
     const url = `http://localhost:3002/api/token`; // Replace with your API endpoint URL
     const base64Credentials = window.btoa(`${username}:${password}`);
@@ -40,7 +45,7 @@ const LoginPage = () => {
           setTimeout(() => {
             localStorage.removeItem("access_token");
             console.log("Access_token expired. Removed from local storage.");
-          }, 10 * 60 * 1000); // 2 minutes in milliseconds
+          }, 30 * 60 * 1000); // 2 minutes in milliseconds
 
           console.log(response.data);
           navigation("home");

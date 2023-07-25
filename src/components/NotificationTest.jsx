@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TokenExpiredPopup from "../small-components/TokenExpiredPopup";
+import { useNavigate } from "react-router-dom";
 
 const NotificationTest = () => {
   const [data, setData] = useState([]);
@@ -18,6 +19,7 @@ const NotificationTest = () => {
       // Get the access_token from local storage
       const access_token = localStorage.getItem("access_token");
       console.log(access_token);
+      const reportedBy = localStorage.getItem("username");
 
       // Make the API call with the access_token in the headers
       const response = await axios.get(
@@ -25,6 +27,7 @@ const NotificationTest = () => {
         {
           headers: {
             Authorization: `Bearer ${access_token}`,
+            "X-Reported-By": reportedBy,
           },
         },
       );
@@ -70,6 +73,14 @@ const NotificationTest = () => {
       }
     });
     return sortedArray;
+  };
+  const navigate = useNavigate();
+  const handleRowClick = (NotifNumber) => {
+    // Call the fetchData function with the NotifNumber from the clicked row
+    fetchData(NotifNumber);
+
+    // Navigate to UpdateSection and pass NotifNumber as a URL parameter
+    navigate(`/update/${NotifNumber}`);
   };
 
   return (
@@ -123,6 +134,7 @@ const NotificationTest = () => {
                 <tr
                   key={item.Notification}
                   className='hover:bg-gray-50 text-center'
+                  onClick={() => handleRowClick(item.Notification)} // Pass the NotifNumber from the clicked row
                 >
                   <td className='p-4 border border-[#b4ed47]'>
                     {item.Notification}

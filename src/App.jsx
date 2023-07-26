@@ -27,9 +27,9 @@ export default App;
 // TODO
 // => DONE =>>>>>>> Comment call number on entry page.
 // make breakdown indicator unmarkable on entry page.
-// map all values on update page and give list to SAP Team.
+// => DONE =>>>>>>> map all values on update page and give list to SAP Team.
 // => DONE =>>>>>>> make logout button and functionality.
 // => DONE =>>>>>>> send data with dynamic user to backend and render list of notification using that user in filter as of now entry is created_by = "p001".
 // => DONE =>>>>>>> save username in localStorage and send it while making entry call api.
-// make animations more beautiful.
+// => DONE =>>>>>>> make animations more beautiful.
 // make changes in update page fields.

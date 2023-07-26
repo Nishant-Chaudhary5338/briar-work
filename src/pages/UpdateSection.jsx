@@ -37,25 +37,36 @@ const UpdateSection = () => {
   };
 
   return (
-    <div className=''>
+    <div className=' bg-gray-50 h-screen'>
       <div className='h-12 bg-[#71a311] items-center flex justify-between px-2'>
         <h1 className='text-white text-2xl font-semibold '>
           Service Update of Notification - {NotificationNumber}
         </h1>
         <LogoutButton />
       </div>
-      <div className='px-10'>
+      <div className='p-20 m-20 bg-white rounded-lg shadow-lg '>
         <div className='sm:flex justify-between'>
           <div className='space-y-4'>
-            <Section4 />
-            <Section5 />
+            <Section4
+              data={
+                responseData?.["n0:ZbapiAlmNotifGetDetailResponse"]?.ZgetDet
+              }
+            />
+            <Section5
+              data={
+                responseData?.["n0:ZbapiAlmNotifGetDetailResponse"]?.ZgetDet
+              }
+            />
           </div>
-          <CTTable />
+          <CTTable
+            data={responseData?.["n0:ZbapiAlmNotifGetDetailResponse"]?.ZgetDet}
+          />
         </div>
 
         <div className='sm:flex justify-between mb-10 pb-10'>
-          <Section6 />
-          <TZTable />
+          <Section6
+            data={responseData?.["n0:ZbapiAlmNotifGetDetailResponse"]?.ZgetDet}
+          />
         </div>
       </div>
     </div>

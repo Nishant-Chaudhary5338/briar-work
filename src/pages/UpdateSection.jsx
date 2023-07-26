@@ -7,8 +7,11 @@ import CTTable from "../components/CTTable";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import LogoutButton from "../small-components/LogoutButton";
+import UpdateRender from "../components/UpdateRender";
+import LoadingSpinner from "../small-components/LoadingSpinner";
 const UpdateSection = () => {
   const [responseData, setResponseData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const { NotificationNumber } = useParams();
   console.log(NotificationNumber);
 
@@ -30,6 +33,7 @@ const UpdateSection = () => {
       );
 
       setResponseData(response.data);
+      setLoading(false);
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -44,31 +48,24 @@ const UpdateSection = () => {
         </h1>
         <LogoutButton />
       </div>
-      <div className='p-20 m-20 bg-white rounded-lg shadow-lg '>
-        <div className='sm:flex justify-between'>
-          <div className='space-y-4'>
-            <Section4
+      {loading ? (
+        <LoadingSpinner text='Loading...' />
+      ) : (
+        <div className=''>
+          <div className='p-10 m-10 rounded-3xl px-20 items-center flex justify-between shadow-2xl shadow-[#71a311]'>
+            <UpdateRender
               data={
                 responseData?.["n0:ZbapiAlmNotifGetDetailResponse"]?.ZgetDet
               }
             />
-            <Section5
+            <CTTable
               data={
                 responseData?.["n0:ZbapiAlmNotifGetDetailResponse"]?.ZgetDet
               }
             />
           </div>
-          <CTTable
-            data={responseData?.["n0:ZbapiAlmNotifGetDetailResponse"]?.ZgetDet}
-          />
         </div>
-
-        <div className='sm:flex justify-between mb-10 pb-10'>
-          <Section6
-            data={responseData?.["n0:ZbapiAlmNotifGetDetailResponse"]?.ZgetDet}
-          />
-        </div>
-      </div>
+      )}
     </div>
   );
 };

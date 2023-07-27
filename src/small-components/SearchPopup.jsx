@@ -64,7 +64,7 @@ const SearchPopup = ({ onClose, onSelectEquipment }) => {
     >
       {showTokenExpiredPopup && <TokenExpiredPopup />}{" "}
       <div
-        className='bg-white w-96 p-6 rounded-md'
+        className='bg-white h-3/4 w-96 p-6 rounded-md'
         onClick={(e) => e.stopPropagation()}
       >
         <div className='flex justify-end'></div>
@@ -81,12 +81,12 @@ const SearchPopup = ({ onClose, onSelectEquipment }) => {
             <PiMagnifyingGlassDuotone size={18} color='#b4ed47' />
           </span>
         </div>
-        <div className='bg-gray-50 mt-4'>
+        <div style={{ overflowY: "auto" }} className='bg-gray-50 mt-4'>
           {loading ? (
             <LoadingSpinner text='Loading...' />
           ) : (
-            <div style={{ width: "100%" }}>
-              <table className='table-fixed'>
+            <div style={{ maxHeight: "300px" }}>
+              <table className='table-fixed w-full overflow-y-auto'>
                 <thead>
                   <tr>
                     <th className='w-1/3 px-4 border-[#b4ed47] border'>
@@ -101,7 +101,7 @@ const SearchPopup = ({ onClose, onSelectEquipment }) => {
                   {filteredData.map((item) => (
                     <tr
                       key={item.Equnr}
-                      className={`cursor-pointer table-fixed hover:bg-[#b4ed47] ${
+                      className={`cursor-pointer table-fixed  hover:bg-[#b4ed47] ${
                         selectedEquipment === item.Equnr
                           ? "border border-[#b4ed47]"
                           : ""

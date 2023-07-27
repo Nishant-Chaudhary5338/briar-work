@@ -52,7 +52,7 @@ const UpdateSection = () => {
         <LoadingSpinner text='Loading...' />
       ) : (
         <div className=''>
-          <div className='p-10 m-10 rounded-3xl px-20 items-center flex justify-between shadow-2xl shadow-[#71a311]'>
+          <div className='p-10 m-20 rounded-3xl px-20 items-center flex justify-between shadow-2xl shadow-[#71a311]'>
             <UpdateRender
               data={
                 responseData?.["n0:ZbapiAlmNotifGetDetailResponse"]?.ZgetDet

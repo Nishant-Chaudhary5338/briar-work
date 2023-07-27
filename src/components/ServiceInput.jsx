@@ -9,11 +9,12 @@ import { createServiceEntry } from "../api/serviceEntry";
 import SuccessPopup from "../small-components/SuccessPopup";
 import ErrorPopup from "../small-components/ErrorPopup";
 import SearchPopup from "../small-components/SearchPopup";
+import TimeInput from "./TimeInput";
 
 const ServiceInput = () => {
   const [callNumber, setCallNumber] = useState("");
   const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [startTime, setStartTime] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [savedText, setSavedText] = useState("");
@@ -69,7 +70,7 @@ const ServiceInput = () => {
         CallStat: callNumber,
         EquipNo: equipmentNo,
         ZendD: startDate,
-        ZendT: "15:33:25",
+        ZendT: startTime,
         GenDesc1: shortDesc,
         GenDesc: savedText,
       },
@@ -114,21 +115,20 @@ const ServiceInput = () => {
     setStartDate(date);
   };
 
-  const handleEndDateChange = (date) => {
-    setEndDate(date);
-  };
-
-  const handleCallNumber = (e) => {
-    setCallNumber(e.target.value);
+  const handleStartTimeChange = (time) => {
+    setStartTime(time);
+    console.log(time);
+    // Do something with the selected time
   };
 
   return (
-    <div className='sm:flex justify-between'>
-      <div className=''>
-        <div className='sm:space-x-16 flex'></div>
-        <div>
-          <div className='space-x-16'>
-            {/*<label htmlFor='callNumber'>Call Number</label>
+    <div>
+      <div className='sm:flex justify-between'>
+        <div className=''>
+          <div className='sm:space-x-16 flex'></div>
+          <div>
+            <div className='space-x-16'>
+              {/*<label htmlFor='callNumber'>Call Number</label>
             <input
               id='CallNumber'
               value={callNumber}
@@ -136,95 +136,121 @@ const ServiceInput = () => {
               className='border border-[#b4ed47] p-[2px] rounded-md pr-20'
             ></input>
   */}
+            </div>
+            <div className='flex space-x-2 items-center'>
+              <span className=' text-sm text-gray-700 font-semibold w-28'>
+                Service Type
+              </span>
+              <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
+                P1
+              </span>
+            </div>
           </div>
-          <div className='space-x-16 mt-2'>
-            <span>Service Type</span>
-            <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
-              P1
-            </span>
-          </div>
-        </div>
-        <div className='space-y-2 mt-2'>
-          <div className='space-x-4 sm:flex items-center sm:space-x-[98px]'>
-            <span className=''>Priority</span>
+          <div className=' mt-2'>
+            <div className='flex space-x-2 items-center'>
+              <span className=' text-sm text-gray-700 font-semibold w-28'>
+                Priority
+              </span>
 
-            <DropDownButton
-              value={selectedOption}
-              onChange={handleOptionChange}
-              options={options}
-            />
+              <DropDownButton
+                value={selectedOption}
+                onChange={handleOptionChange}
+                options={options}
+              />
+            </div>
+          </div>
+          <div className='space-y-2 mt-2'>
+            <div className=''>
+              <span className=''>
+                <DateInput
+                  title='Start Date'
+                  onDateChange={handleStartDateChange}
+                />
+              </span>
+            </div>
+            <div className=''>
+              <span className=''>
+                <TimeInput
+                  title='Start Time'
+                  onTimeChange={handleStartTimeChange}
+                />
+              </span>
+            </div>
           </div>
         </div>
-        <div className='space-y-2 mt-2 pr-20'>
-          <DateInput title='Start Date' onDateChange={handleStartDateChange} />
-          <DateInput title='End Date' onDateChange={handleEndDateChange} />
+        <div>
+          <h4 className='text-md font-semibold'>Equipment Information:</h4>
+          <div className='space-y-2 mt-4'>
+            <div className='space-x-4 flex'>
+              <span>Equipment Number</span>
+              <input
+                value={equipmentNo}
+                onChange={(e) => setEquipmentNo(e.target.value)}
+                className='border border-[#b4ed47] p-[2px] rounded-md pr-16'
+              ></input>
+              <div className='flex items-center space-x-1'>
+                <button onClick={handleSearchOpenPopup}>
+                  <PiMagnifyingGlassDuotone
+                    size={30}
+                    color='#b4ed47'
+                    className='border p-[2px] border-[#b4ed47] rounded-md'
+                  />
+                </button>
+                {/* Render the SearchPopup */}
+                {searchPopup && (
+                  <SearchPopup
+                    onClose={handleSearchClosePopup}
+                    onSelectEquipment={handleSelectEquipment}
+                  />
+                )}
+              </div>
+            </div>
+            <div className='space-x-4 flex items-center'>
+              <span>General Description</span>
+              <textarea
+                onChange={handleChange}
+                value={shortDesc}
+                maxLength='40'
+                className='border border-[#b4ed47] focus:outline-none focus:ring-[#b4ed47] focus:border-[#b4ed47]'
+              />
+              <div className='flex items-center space-x-2'>
+                <button className='' onClick={handleOpenPopup}>
+                  <BiSolidPencil />
+                </button>
+
+                {isPopupOpen && (
+                  <Popup onClose={handleClosePopup} onSave={handleSaveText} />
+                )}
+
+                {showSuccessPopup && (
+                  <SuccessPopup
+                    notificationNo={notificationNo}
+                    onClose={handleCloseSuccessPopup}
+                  />
+                )}
+                {errorPopup && (
+                  <ErrorPopup
+                    message={errorMessage}
+                    onClose={handleCloseErrorPopup}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div>
-        <h4 className='text-md font-semibold'>Equipment Information:</h4>
-        <div className='space-y-2 mt-4'>
-          <div className='space-x-4 flex'>
-            <span>Equipment Number</span>
-            <input
-              value={equipmentNo}
-              onChange={(e) => setEquipmentNo(e.target.value)}
-              className='border border-[#b4ed47] p-[2px] rounded-md pr-16'
-            ></input>
-            <div className='flex items-center space-x-1'>
-              <button onClick={handleSearchOpenPopup}>
-                <PiMagnifyingGlassDuotone
-                  size={30}
-                  color='#b4ed47'
-                  className='border p-[2px] border-[#b4ed47] rounded-md'
-                />
-              </button>
-              {/* Render the SearchPopup */}
-              {searchPopup && (
-                <SearchPopup
-                  onClose={handleSearchClosePopup}
-                  onSelectEquipment={handleSelectEquipment}
-                />
-              )}
-            </div>
-          </div>
-          <div className='space-x-4 flex items-center'>
-            <span>General Description</span>
-            <textarea
-              onChange={handleChange}
-              value={shortDesc}
-              maxLength='80'
-              className='border border-[#b4ed47] focus:outline-none focus:ring-[#b4ed47] focus:border-[#b4ed47]'
-            />
-            <div className='flex items-center space-x-2'>
-              <button className='' onClick={handleOpenPopup}>
-                <BiSolidPencil />
-              </button>
-
-              {isPopupOpen && (
-                <Popup onClose={handleClosePopup} onSave={handleSaveText} />
-              )}
-
-              <p>Save</p>
-              <LiaSave
-                size={30}
-                color='white'
-                className='bg-[#b4ed47] p-1 rounded-full'
-                onClick={handleSendResponse}
-              />
-              {showSuccessPopup && (
-                <SuccessPopup
-                  notificationNo={notificationNo}
-                  onClose={handleCloseSuccessPopup}
-                />
-              )}
-              {errorPopup && (
-                <ErrorPopup
-                  message={errorMessage}
-                  onClose={handleCloseErrorPopup}
-                />
-              )}
-            </div>
-          </div>
+      <div className='flex justify-center'>
+        <div
+          onClick={handleSendResponse}
+          className='flex items-center active:bg-blue-400 text-white rounded-md font-semibold rounde-md px-2 py-1  space-x-1 bg-[#71a311]'
+        >
+          <p>Save</p>
+          <LiaSave
+            size={30}
+            color='white'
+            className='bg-[#71a311] p-1 rounded-full'
+            onClick={handleSendResponse}
+          />
         </div>
       </div>
     </div>

@@ -21,10 +21,16 @@ const DateInput = ({ title, onDateChange, reset }) => {
   };
 
   return (
-    <div className='space-x-20'>
-      <label htmlFor='date'>{title}</label>
+    <div className='flex space-x-2'>
+      <label
+        className=' text-sm text-gray-700 font-semibold w-28'
+        htmlFor='date'
+      >
+        {title}
+      </label>
       <input
         className='border border-[#b4ed47] p-[2px] rounded-md'
+        placeholder='dd-mm-yyyy'
         type='date' // Change the input type to "date"
         id='date'
         value={selectedDate}

@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../components/Card";
 import { useNavigate } from "react-router-dom";
-import { RiToolsFill } from "react-icons/ri";
+import { RiToolsFill, RiStockFill } from "react-icons/ri";
 import { MdUpdate } from "react-icons/md";
 import LogoutButton from "../small-components/LogoutButton";
 
@@ -30,6 +30,17 @@ const HomePage = () => {
           onClick={() => navigate("/list")}
           icon={
             <MdUpdate
+              size={30}
+              color='black'
+              className='bg-gray-200 p-1 rounded-full'
+            />
+          }
+        />
+        <Card
+          title='Stock Transfer'
+          onClick={() => navigate("/stocklist")}
+          icon={
+            <RiStockFill
               size={30}
               color='black'
               className='bg-gray-200 p-1 rounded-full'

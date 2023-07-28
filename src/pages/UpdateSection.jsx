@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Section4 from "../components/Section4";
-import Section5 from "../components/Sections5";
-import Section6 from "../components/Section6";
-import TZTable from "../components/TZTable";
 import CTTable from "../components/CTTable";
 import axios from "axios";
 import { useParams } from "react-router-dom";

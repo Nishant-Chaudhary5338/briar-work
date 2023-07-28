@@ -1,12 +1,12 @@
 import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
-
 import HomePage from "./pages/HomePage";
-
 import EntrySection from "./pages/EntrySection";
 import UpdateSection from "./pages/UpdateSection";
 import NotificationTest from "./components/NotificationTest";
+import StockList from "./components/StockList";
+import StockUpdate from "./components/StockUpdate";
 
 const App = () => {
   return (
@@ -18,6 +18,8 @@ const App = () => {
 
       <Route path='/update/:NotificationNumber' element={<UpdateSection />} />
       <Route path='/home' element={<HomePage />} />
+      <Route path='/stockList' element={<StockList />} />
+      <Route path='/stockUpdate' element={<StockUpdate />} />
     </Routes>
   );
 };
@@ -33,3 +35,9 @@ export default App;
 // => DONE =>>>>>>> save username in localStorage and send it while making entry call api.
 // => DONE =>>>>>>> make animations more beautiful.
 // make changes in update page fields.
+
+// TODOS
+// Disable button while making service entry call to avoid duplicate/multiple calls.
+// make breakdown indicator unmarkable on entry page.
+// pre- fetch help_equipment api for faster user experience
+// move all api codes outside component

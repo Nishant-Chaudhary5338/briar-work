@@ -102,31 +102,31 @@ const NotificationTest = () => {
             <thead className=''>
               <tr>
                 <th
-                  className='w-1/6 p-4 border border-[#b4ed47]'
+                  className='w-1/6 custom-border'
                   onClick={() => handleSort("Notification")}
                 >
                   Notification
                 </th>
                 <th
-                  className='w-1/6 p-4 border border-[#b4ed47]'
+                  className='w-1/6 custom-border'
                   onClick={() => handleSort("Reported_By")}
                 >
                   Reported By
                 </th>
                 <th
-                  className='w-1/6 p-4 border border-[#b4ed47]'
+                  className='w-1/6 custom-border'
                   onClick={() => handleSort("Notification_Date")}
                 >
                   Date
                 </th>
                 <th
-                  className='w-1/6 p-4 border border-[#b4ed47]'
+                  className='w-1/6 custom-border'
                   onClick={() => handleSort("Notification_Time")}
                 >
                   Time
                 </th>
                 <th
-                  className='w-2/6 p-4 border border-[#b4ed47]'
+                  className='w-2/6 custom-border'
                   onClick={() => handleSort("Description")}
                 >
                   Description
@@ -140,21 +140,15 @@ const NotificationTest = () => {
                   className='hover:bg-[#b4ed47] text-center'
                   onClick={() => handleRowClick(item.Notification)} // Pass the NotifNumber from the clicked row
                 >
-                  <td className='p-4 border border-[#b4ed47]'>
-                    {item.Notification}
-                  </td>
-                  <td className='p-4 border border-[#b4ed47]'>
-                    {item.Reported_By}
-                  </td>
-                  <td className='p-4 border border-[#b4ed47]'>
+                  <td className='custom-border'>{item.Notification}</td>
+                  <td className='custom-border'>{item.Reported_By}</td>
+                  <td className='custom-border'>
                     {formatDate(item.Notification_Date)}
                   </td>
-                  <td className='p-4 border border-[#b4ed47]'>
+                  <td className='custom-border'>
                     {formatTime(item.Notification_Time)}
                   </td>
-                  <td className='p-4 border border-[#b4ed47]'>
-                    {item.Description}
-                  </td>
+                  <td className='custom-border'>{item.Description}</td>
                 </tr>
               ))}
             </tbody>

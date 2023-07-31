@@ -26,21 +26,21 @@ const StockList = () => {
         <h1 className='text-white font-semibold'>Stock/Material List</h1>
         <LogoutButton />
       </div>
-      <div>
+      <div className='mx-2'>
         <table className='border-collapse w-full mt-4 table-fixed text-center'>
           <thead>
-            <tr className='bg-gray-200'>
-              <th className='border border-[#b4ed47] p-2'>Material</th>
-              <th className='border border-[#b4ed47] p-2'>Plant</th>
-              <th className='border border-[#b4ed47] p-2'>Location</th>
-              <th className='border border-[#b4ed47] p-2'>SL</th>
-              <th className='border border-[#b4ed47] p-2'>Base Unit</th>
-              <th className='border border-[#b4ed47] p-2'>Quantity</th>
-              <th className='border border-[#b4ed47] p-2'>Currency</th>
-              <th className='border border-[#b4ed47] p-2'>Value</th>
-              <th className='border border-[#b4ed47] p-2'>Transit</th>
-              <th className='border border-[#b4ed47] p-2'>Difference</th>
-              <th className='border border-[#b4ed47] p-2'>Inspection</th>
+            <tr className='text-xs'>
+              <th className='custom-border'>Material</th>
+              <th className='custom-border'>Plant</th>
+              <th className='custom-border'>Location</th>
+              <th className='custom-border'>SL</th>
+              <th className='custom-border'>Base Unit</th>
+              <th className='custom-border'>Quantity</th>
+              <th className='custom-border'>Currency</th>
+              <th className='custom-border'>Value</th>
+              <th className='custom-border'>Transit</th>
+              <th className='custom-border'>Difference</th>
+              <th className='custom-border'>Inspection</th>
             </tr>
           </thead>
           <tbody>
@@ -50,21 +50,17 @@ const StockList = () => {
                 onClick={() => navigate("/stockUpdate")}
                 className='hover:bg-[#b4ed47]'
               >
-                <td className='border border-[#b4ed47] p-2'>{item.Material}</td>
-                <td className='border border-[#b4ed47] p-2'>{item.Plant}</td>
-                <td className='border border-[#b4ed47] p-2'>{item.Location}</td>
-                <td className='border border-[#b4ed47] p-2'>{item.SL}</td>
-                <td className='border border-[#b4ed47] p-2'>{item.BaseUnit}</td>
-                <td className='border border-[#b4ed47] p-2'>{item.Quantity}</td>
-                <td className='border border-[#b4ed47] p-2'>{item.Currency}</td>
-                <td className='border border-[#b4ed47] p-2'>{item.Value}</td>
-                <td className='border border-[#b4ed47] p-2'>{item.Transit}</td>
-                <td className='border border-[#b4ed47] p-2'>
-                  {item.Difference}
-                </td>
-                <td className='border border-[#b4ed47] p-2'>
-                  {item.Inspection}
-                </td>
+                <td className='custom-border'>{item.Material}</td>
+                <td className='custom-border'>{item.Plant}</td>
+                <td className='custom-border'>{item.Location}</td>
+                <td className='custom-border'>{item.SL}</td>
+                <td className='custom-border'>{item.BaseUnit}</td>
+                <td className='custom-border'>{item.Quantity}</td>
+                <td className='custom-border'>{item.Currency}</td>
+                <td className='custom-border'>{item.Value}</td>
+                <td className='custom-border'>{item.Transit}</td>
+                <td className='custom-border'>{item.Difference}</td>
+                <td className='custom-border'>{item.Inspection}</td>
               </tr>
             ))}
           </tbody>

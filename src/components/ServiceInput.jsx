@@ -25,6 +25,10 @@ const ServiceInput = () => {
   const [errorPopup, setErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [searchPopup, setSearchPopup] = useState(false);
+  const [checkboxChecked, setCheckboxChecked] = useState(false);
+  const handleCheckboxChange = (isChecked) => {
+    setCheckboxChecked(isChecked);
+  };
   const handleSelectEquipment = (equipmentNo) => {
     setEquipmentNo(equipmentNo); // Set the equipment number in the state of the parent component
   };
@@ -63,6 +67,7 @@ const ServiceInput = () => {
     const createdBy = localStorage.getItem("username");
     const data = {
       Header: {
+        Breakdown: checkboxChecked,
         CreatedBy: createdBy,
         ServiceType: "P1",
         Priority: selectedOption,
@@ -153,9 +158,9 @@ const ServiceInput = () => {
               </span>
 
               <DropDownButton
-                value={selectedOption}
-                onChange={handleOptionChange}
-                options={options}
+                selectedOption={selectedOption}
+                handleOptionChange={handleOptionChange}
+                onCheckboxChange={handleCheckboxChange}
               />
             </div>
           </div>

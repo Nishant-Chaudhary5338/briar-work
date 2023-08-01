@@ -41,4 +41,4 @@ const DateInput = ({ title, onDateChange, reset }) => {
   );
 };
 
-export default DateInput;
+export default React.memo(DateInput);

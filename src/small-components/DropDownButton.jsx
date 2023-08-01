@@ -65,4 +65,4 @@ const DropDownButton = ({
   );
 };
 
-export default DropDownButton;
+export default React.memo(DropDownButton);

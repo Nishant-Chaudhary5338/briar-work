@@ -262,4 +262,4 @@ const ServiceInput = () => {
   );
 };
 
-export default ServiceInput;
+export default React.memo(ServiceInput);

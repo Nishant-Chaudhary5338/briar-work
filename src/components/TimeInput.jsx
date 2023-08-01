@@ -46,4 +46,4 @@ const TimeInput = ({ title, onTimeChange, reset }) => {
   );
 };
 
-export default TimeInput;
+export default React.memo(TimeInput);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DropDownButton from "../small-components/DropDownButton";
 import DateInput from "./DateInput";
 import { PiMagnifyingGlassDuotone } from "react-icons/pi";
@@ -10,6 +10,7 @@ import SuccessPopup from "../small-components/SuccessPopup";
 import ErrorPopup from "../small-components/ErrorPopup";
 import SearchPopup from "../small-components/SearchPopup";
 import TimeInput from "./TimeInput";
+import axios from "axios";
 
 const ServiceInput = () => {
   const [callNumber, setCallNumber] = useState("");
@@ -26,6 +27,33 @@ const ServiceInput = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [searchPopup, setSearchPopup] = useState(false);
   const [checkboxChecked, setCheckboxChecked] = useState(false);
+  const [help, setHelp] = useState([]);
+
+  useEffect(() => {
+    const fetchHelp = async () => {
+      try {
+        // Get the access_token from localStorage
+        const accessToken = localStorage.getItem("access_token");
+
+        const response = await axios.get(
+          "http://localhost:3002/api/help_equipment",
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`, // Add the access_token to the headers
+              "Content-Type": "application/json",
+            },
+          },
+        );
+        setHelp(response.data.znotifc_epqui_helpType);
+        console.log(response.data.znotifc_epqui_helpType);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchHelp();
+  }, []);
+
   const handleCheckboxChange = (isChecked) => {
     setCheckboxChecked(isChecked);
   };
@@ -206,6 +234,7 @@ const ServiceInput = () => {
                   <SearchPopup
                     onClose={handleSearchClosePopup}
                     onSelectEquipment={handleSelectEquipment}
+                    data={help}
                   />
                 )}
               </div>

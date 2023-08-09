@@ -4,16 +4,25 @@ import TokenExpiredPopup from "../small-components/TokenExpiredPopup";
 import { useNavigate } from "react-router-dom";
 import LogoutButton from "../small-components/LogoutButton";
 import LoadingSpinner from "../small-components/LoadingSpinner";
+
 const NotificationTest = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [sortBy, setSortBy] = useState("Notification_Date");
-  const [sortOrder, setSortOrder] = useState("asc");
-  const [showTokenExpiredPopup, setShowTokenExpiredPopup] = useState(false); // State to show/hide the popup
+  const [showTokenExpiredPopup, setShowTokenExpiredPopup] = useState(false);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [filteredData, setFilteredData] = useState([]); // New state for filtered data
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    // Set filteredData to data whenever data changes (initial load or new API response)
+    setFilteredData(data);
+  }, [data]);
 
   const fetchData = async () => {
     try {
@@ -54,30 +63,14 @@ const NotificationTest = () => {
     return timeObj.toLocaleTimeString();
   };
 
-  // Function to handle sorting based on selected column and order
-  const handleSort = (column) => {
-    if (sortBy === column) {
-      // If the same column is clicked, toggle the sort order
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-    } else {
-      // If a different column is clicked, set the new column and default to ascending order
-      setSortBy(column);
-      setSortOrder("asc");
+  const convertToISODate = (dateString) => {
+    const parts = dateString.split("/");
+    if (parts.length === 3) {
+      return `${parts[2]}-${parts[0]}-${parts[1]}`;
     }
+    return dateString;
   };
 
-  // Function to sort the data based on the selected column and order
-  const sortedData = () => {
-    const sortedArray = data.sort((a, b) => {
-      if (sortOrder === "asc") {
-        return a[sortBy].localeCompare(b[sortBy]);
-      } else {
-        return b[sortBy].localeCompare(a[sortBy]);
-      }
-    });
-    return sortedArray;
-  };
-  const navigate = useNavigate();
   const handleRowClick = (NotifNumber) => {
     // Call the fetchData function with the NotifNumber from the clicked row
     fetchData(NotifNumber);
@@ -86,15 +79,58 @@ const NotificationTest = () => {
     navigate(`/update/${NotifNumber}`);
   };
 
+  const handleApplyFilter = () => {
+    // Filter the data based on selected start and end dates
+    const filteredData = data.filter((item) => {
+      const notificationDate = new Date(item.Notification_Date).getTime();
+      const startDateTime = startDate
+        ? new Date(convertToISODate(startDate)).getTime()
+        : 0;
+      const endDateTime = endDate
+        ? new Date(convertToISODate(endDate)).getTime()
+        : Number.MAX_VALUE;
+
+      return (
+        notificationDate >= startDateTime && notificationDate <= endDateTime
+      );
+    });
+
+    // Update the state with the filtered data
+    setFilteredData(filteredData);
+  };
+
   return (
     <div>
-      {showTokenExpiredPopup && <TokenExpiredPopup />}{" "}
+      {showTokenExpiredPopup && <TokenExpiredPopup />}
       {/* Show the TokenExpiredPopup when showTokenExpiredPopup is true */}
       <div className='h-12 bg-[#71a311] items-center flex justify-between px-2'>
         <h1 className='text-white text-2xl font-semibold '>
           List of All Notifications
         </h1>
         <LogoutButton />
+      </div>
+      <div className='flex justify-between my-4'>
+        <div>
+          <input
+            type='date'
+            className='border p-1'
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+          <span className='mx-2'>to</span>
+          <input
+            type='date'
+            className='border p-1'
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+          />
+          <button
+            className='px-4 py-2 bg-[#b4ed47] text-white rounded-md ml-2'
+            onClick={handleApplyFilter}
+          >
+            Apply Filter
+          </button>
+        </div>
       </div>
       {loading ? (
         <LoadingSpinner text='Loading...' />
@@ -103,50 +139,20 @@ const NotificationTest = () => {
           <table className='table-fixed w-full border-collapse border border-[#b4ed47]'>
             <thead className=''>
               <tr>
-                <th
-                  className='w-1/6 custom-border'
-                  onClick={() => handleSort("Notification")}
-                >
-                  Notification
-                </th>
-                <th
-                  className='w-1/6 custom-border'
-                  onClick={() => handleSort("Reported_By")}
-                >
-                  Reported By
-                </th>
-                <th
-                  className='w-1/6 custom-border'
-                  onClick={() => handleSort("Reported_By")}
-                >
-                  Equipment No.
-                </th>
-                <th
-                  className='w-1/6 custom-border'
-                  onClick={() => handleSort("Notification_Date")}
-                >
-                  Date
-                </th>
-                <th
-                  className='w-1/6 custom-border'
-                  onClick={() => handleSort("Notification_Time")}
-                >
-                  Time
-                </th>
-                <th
-                  className='w-2/6 custom-border'
-                  onClick={() => handleSort("Description")}
-                >
-                  Description
-                </th>
+                <th className='w-1/6 custom-border'>Notification</th>
+                <th className='w-1/6 custom-border'>Reported By</th>
+                <th className='w-1/6 custom-border'>Equipment No.</th>
+                <th className='w-1/6 custom-border'>Date</th>
+                <th className='w-1/6 custom-border'>Time</th>
+                <th className='w-2/6 custom-border'>Description</th>
               </tr>
             </thead>
             <tbody>
-              {sortedData().map((item) => (
+              {filteredData.map((item) => (
                 <tr
                   key={item.Notification}
                   className='hover:bg-[#b4ed47] text-center'
-                  onClick={() => handleRowClick(item.Notification)} // Pass the NotifNumber from the clicked row
+                  onClick={() => handleRowClick(item.Notification)}
                 >
                   <td className='custom-border'>{item.Notification}</td>
                   <td className='custom-border'>{item.Reported_By}</td>
@@ -169,5 +175,3 @@ const NotificationTest = () => {
 };
 
 export default NotificationTest;
-
-/*Equipment_number */

@@ -11,7 +11,8 @@ const NotificationTest = () => {
   const [showTokenExpiredPopup, setShowTokenExpiredPopup] = useState(false);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [filteredData, setFilteredData] = useState([]); // New state for filtered data
+  const [filteredData, setFilteredData] = useState([]);
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const navigate = useNavigate();
 
@@ -98,6 +99,18 @@ const NotificationTest = () => {
     // Update the state with the filtered data
     setFilteredData(filteredData);
   };
+  console.log(filteredData);
+  const handleSort = () => {
+    const sortedFilteredArray = [...filteredData].sort((a, b) => {
+      if (sortOrder === "asc") {
+        return a.Notification - b.Notification;
+      } else {
+        return b.Notification - a.Notification;
+      }
+    });
+    setFilteredData(sortedFilteredArray);
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+  };
 
   return (
     <div>
@@ -130,6 +143,7 @@ const NotificationTest = () => {
           >
             Apply Filter
           </button>
+          <button onClick={handleSort}>Sort</button>
         </div>
       </div>
       {loading ? (
@@ -175,3 +189,43 @@ const NotificationTest = () => {
 };
 
 export default NotificationTest;
+
+/*
+   
+
+
+
+  const [data, setData] = useState([...]); // Your data array
+  const [sortOrder, setSortOrder] = useState("asc");
+
+  const handleSort = () => {
+    const sortedArray = [...data].sort((a, b) => {
+      if (sortOrder === "asc") {
+        return a.number - b.number;
+      } else {
+        return b.number - a.number;
+  }
+    });
+
+    setData(sortedArray);
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+  };
+
+
+      
+      <button onClick={handleSort}>Sort</button>
+     
+
+
+const handleSort = () => {
+  const sortedFilteredArray = [...filteredData].sort((a, b) => {
+    if(sortOrder === 'asc') {
+      return a.Notification - b.Notification;
+    } else {
+      return b.Notification - a.Notification
+    }
+  });
+  setFilteredData(sortedFilteredArray)
+  setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+}
+*/

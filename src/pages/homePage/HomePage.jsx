@@ -1,9 +1,10 @@
 import React from "react";
-import Card from "../components/Card";
+import Card from "../../components/Card";
 import { useNavigate } from "react-router-dom";
 import { RiToolsFill, RiStockFill } from "react-icons/ri";
 import { MdUpdate } from "react-icons/md";
-import LogoutButton from "../small-components/LogoutButton";
+import LogoutButton from "../../small-components/LogoutButton";
+import { FcApproval } from "react-icons/fc";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -31,6 +32,17 @@ const HomePage = () => {
           onClick={() => navigate("/list")}
           icon={
             <MdUpdate
+              size={30}
+              color='black'
+              className='bg-gray-200 p-1 rounded-full'
+            />
+          }
+        />
+        <Card
+          title='Service Call Approve'
+          onClick={() => navigate("/approve")}
+          icon={
+            <FcApproval
               size={30}
               color='black'
               className='bg-gray-200 p-1 rounded-full'

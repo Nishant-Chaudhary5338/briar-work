@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import TokenExpiredPopup from "../small-components/TokenExpiredPopup";
+import TokenExpiredPopup from "../../small-components/TokenExpiredPopup";
 import { useNavigate } from "react-router-dom";
-import LogoutButton from "../small-components/LogoutButton";
-import LoadingSpinner from "../small-components/LoadingSpinner";
+import LogoutButton from "../../small-components/LogoutButton";
+import LoadingSpinner from "../../small-components/LoadingSpinner";
 import * as XLSX from "xlsx";
 import { FaFilter } from "react-icons/fa";
 import { FaSortAlphaDownAlt } from "react-icons/fa";
 import { RiFileExcel2Fill } from "react-icons/ri";
 
-const NotificationTest = () => {
+const NotificationApprove = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showTokenExpiredPopup, setShowTokenExpiredPopup] = useState(false);
@@ -81,7 +81,7 @@ const NotificationTest = () => {
     fetchData(NotifNumber);
 
     // Navigate to UpdateSection and pass NotifNumber as a URL parameter
-    navigate(`/update/${NotifNumber}`);
+    navigate(`/approve/${NotifNumber}`);
   };
 
   const handleApplyFilter = () => {
@@ -141,13 +141,13 @@ const NotificationTest = () => {
       {/* Show the TokenExpiredPopup when showTokenExpiredPopup is true */}
       <div className='h-12 bg-[#71a311] items-center flex justify-between px-2'>
         <h1 className='text-white text-2xl font-semibold '>
-          List of All Notifications
+          List of All Notifications pending for Approval / Rejection
         </h1>
         <LogoutButton />
       </div>
 
       <div className='flex justify-between items-center px-20 mt-2'>
-        <div>
+        <div className='flex items-center space-x-2'>
           <input
             type='date'
             className=' p-1 custom-border rounded-md'
@@ -162,10 +162,13 @@ const NotificationTest = () => {
             onChange={(e) => setEndDate(e.target.value)}
           />
           <button
-            className='px-4 py-2 bg-[#b4ed47] text-white font-semibold rounded-md ml-2'
+            className='px-4 py-2 flex items-center space-x-2  bg-[#b4ed47] text-white font-semibold rounded-md ml-2'
             onClick={handleApplyFilter}
           >
-            Filter{" "}
+            <span>Apply</span>
+            <span>
+              <FaFilter size={16} />
+            </span>
           </button>
         </div>
         <div>
@@ -231,44 +234,4 @@ const NotificationTest = () => {
   );
 };
 
-export default NotificationTest;
-
-/*
-   
-
-
-
-  const [data, setData] = useState([...]); // Your data array
-  const [sortOrder, setSortOrder] = useState("asc");
-
-  const handleSort = () => {
-    const sortedArray = [...data].sort((a, b) => {
-      if (sortOrder === "asc") {
-        return a.number - b.number;
-      } else {
-        return b.number - a.number;
-  }
-    });
-
-    setData(sortedArray);
-    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-  };
-
-
-      
-      <button onClick={handleSort}>Sort</button>
-     
-
-
-const handleSort = () => {
-  const sortedFilteredArray = [...filteredData].sort((a, b) => {
-    if(sortOrder === 'asc') {
-      return a.Notification - b.Notification;
-    } else {
-      return b.Notification - a.Notification
-    }
-  });
-  setFilteredData(sortedFilteredArray)
-  setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-}
-*/
+export default NotificationApprove;

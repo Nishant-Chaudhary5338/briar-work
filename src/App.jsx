@@ -1,27 +1,25 @@
 import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import HomePage from "./pages/HomePage";
-import EntrySection from "./pages/EntrySection";
-import UpdateSection from "./pages/UpdateSection";
-import NotificationTest from "./components/NotificationTest";
+import LoginPage from "./pages/loginPage/LoginPage";
+import HomePage from "./pages/homePage/HomePage";
 import StockList from "./components/StockList";
 import StockUpdate from "./components/StockUpdate";
+import CreateEntry from "./pages/create Entry/CreateEntry";
+import NotificationList from "./pages/notification list/NotificationList";
+import UpdatePage from "./pages/update page/UpdatePage";
+import ApprovePage from "./pages/approve page/ApprovePage";
+import NotificationApprove from "./pages/notification approve/NotificationApprove";
 
 const App = () => {
-  const username = localStorage.getItem("username");
   return (
     <Routes>
       <Route path='/' element={<LoginPage />} />
-      <Route path='/entry' element={<EntrySection />} />
-      {/* Add the route for UpdateSection with the NotificationNumber parameter */}
-      <Route path='/list' element={<NotificationTest />} />
-      {username === "Nick_Burr" && (
-        <Route path='/approve' element={<NotificationTest />} />
-      )}
-
-      <Route path='/update/:NotificationNumber' element={<UpdateSection />} />
       <Route path='/home' element={<HomePage />} />
+      <Route path='/entry' element={<CreateEntry />} />
+      <Route path='/list' element={<NotificationList />} />
+      <Route path='/update/:NotificationNumber' element={<UpdatePage />} />
+      <Route path='/approve' element={<NotificationApprove />} />
+      <Route path='/approve/:NotificationNumber' element={<ApprovePage />} />
       <Route path='/stockList' element={<StockList />} />
       <Route path='/stockUpdate' element={<StockUpdate />} />
     </Routes>

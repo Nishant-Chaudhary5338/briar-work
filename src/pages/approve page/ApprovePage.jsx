@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import CTTable from "../components/CTTable";
+import CTTable from "../../components/CTTable";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import LogoutButton from "../small-components/LogoutButton";
-import UpdateRender from "../components/UpdateRender";
-import LoadingSpinner from "../small-components/LoadingSpinner";
-const UpdateSection = () => {
+import LogoutButton from "../../small-components/LogoutButton";
+
+import LoadingSpinner from "../../small-components/LoadingSpinner";
+import ApproveRender from "./ApproveRender";
+const ApprovePage = () => {
   const [responseData, setResponseData] = useState(null);
   const [loading, setLoading] = useState(true);
   const { NotificationNumber } = useParams();
@@ -40,7 +41,7 @@ const UpdateSection = () => {
     <div className=' bg-gray-50 h-screen'>
       <div className='h-12 bg-[#71a311] items-center flex justify-between px-2'>
         <h1 className='text-white text-2xl font-semibold '>
-          Service Update of Notification - {NotificationNumber}
+          Approve / Reject Notification - {NotificationNumber}
         </h1>
         <LogoutButton />
       </div>
@@ -49,7 +50,7 @@ const UpdateSection = () => {
       ) : (
         <div className=''>
           <div className='p-10 m-20 rounded-3xl px-20 items-center flex justify-between shadow-2xl shadow-[#71a311]'>
-            <UpdateRender
+            <ApproveRender
               data={
                 responseData?.["n0:ZbapiAlmNotifGetDetailResponse"]?.ZgetDet
               }
@@ -66,4 +67,4 @@ const UpdateSection = () => {
   );
 };
 
-export default UpdateSection;
+export default ApprovePage;

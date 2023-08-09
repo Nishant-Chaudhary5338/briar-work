@@ -1,9 +1,9 @@
 import React from "react";
 
-import ServiceInput from "../components/ServiceInput";
-import LogoutButton from "../small-components/LogoutButton";
+import ServiceInput from "../../components/ServiceInput";
+import LogoutButton from "../../small-components/LogoutButton";
 
-const EntrySection = () => {
+const CreateEntry = () => {
   return (
     <div className='overflow-x-hidden'>
       <div className='h-12 bg-[#71a311] items-center flex justify-between px-2'>
@@ -23,4 +23,4 @@ const EntrySection = () => {
   );
 };
 
-export default EntrySection;
+export default CreateEntry;

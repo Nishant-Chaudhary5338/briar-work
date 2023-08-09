@@ -34,6 +34,8 @@ const NotificationTest = () => {
       );
 
       setData(response.data.znotifc_view_helpType);
+      console.log(response.data.znotifc_view_helpType);
+
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -115,6 +117,12 @@ const NotificationTest = () => {
                 </th>
                 <th
                   className='w-1/6 custom-border'
+                  onClick={() => handleSort("Reported_By")}
+                >
+                  Equipment No.
+                </th>
+                <th
+                  className='w-1/6 custom-border'
                   onClick={() => handleSort("Notification_Date")}
                 >
                   Date
@@ -142,6 +150,7 @@ const NotificationTest = () => {
                 >
                   <td className='custom-border'>{item.Notification}</td>
                   <td className='custom-border'>{item.Reported_By}</td>
+                  <td className='custom-border'>{item.Equipment_number}</td>
                   <td className='custom-border'>
                     {formatDate(item.Notification_Date)}
                   </td>
@@ -160,3 +169,5 @@ const NotificationTest = () => {
 };
 
 export default NotificationTest;
+
+/*Equipment_number */

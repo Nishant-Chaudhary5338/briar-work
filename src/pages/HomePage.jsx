@@ -7,6 +7,7 @@ import LogoutButton from "../small-components/LogoutButton";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const username = localStorage.getItem("username");
   return (
     <div>
       <div className='h-12 bg-black flex px-4 items-center justify-between'>
@@ -26,7 +27,7 @@ const HomePage = () => {
           }
         />
         <Card
-          title='Service Call Update'
+          title='Service Call Report'
           onClick={() => navigate("/list")}
           icon={
             <MdUpdate
@@ -36,6 +37,7 @@ const HomePage = () => {
             />
           }
         />
+
         <Card
           title='Stock Transfer'
           onClick={() => navigate("/stocklist")}

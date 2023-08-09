@@ -9,12 +9,16 @@ import StockList from "./components/StockList";
 import StockUpdate from "./components/StockUpdate";
 
 const App = () => {
+  const username = localStorage.getItem("username");
   return (
     <Routes>
       <Route path='/' element={<LoginPage />} />
       <Route path='/entry' element={<EntrySection />} />
       {/* Add the route for UpdateSection with the NotificationNumber parameter */}
       <Route path='/list' element={<NotificationTest />} />
+      {username === "Nick_Burr" && (
+        <Route path='/approve' element={<NotificationTest />} />
+      )}
 
       <Route path='/update/:NotificationNumber' element={<UpdateSection />} />
       <Route path='/home' element={<HomePage />} />

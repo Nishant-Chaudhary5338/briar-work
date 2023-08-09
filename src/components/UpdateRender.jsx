@@ -1,6 +1,8 @@
 import React from "react";
 
 const UpdateRender = ({ data }) => {
+  const username = localStorage.getItem("username");
+  const handleApprove = () => {};
   return (
     <div className=''>
       <div className='space-y-2'>
@@ -75,6 +77,16 @@ const UpdateRender = ({ data }) => {
           <span className='border border-[#b4ed47] rounded-md px-4'>
             {data?.FunctLoc}
           </span>
+        </div>
+        <div>
+          {username === "Nick_Burr" && (
+            <button
+              className='px-4 py-1 rounded-md bg-blue-500'
+              onClick={handleApprove}
+            >
+              Approve Request
+            </button>
+          )}
         </div>
       </div>
     </div>

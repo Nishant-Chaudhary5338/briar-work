@@ -4,6 +4,10 @@ import TokenExpiredPopup from "../small-components/TokenExpiredPopup";
 import { useNavigate } from "react-router-dom";
 import LogoutButton from "../small-components/LogoutButton";
 import LoadingSpinner from "../small-components/LoadingSpinner";
+import * as XLSX from "xlsx";
+import { FaFilter } from "react-icons/fa";
+import { FaSortAlphaDownAlt } from "react-icons/fa";
+import { RiFileExcel2Fill } from "react-icons/ri";
 
 const NotificationTest = () => {
   const [data, setData] = useState([]);
@@ -112,6 +116,25 @@ const NotificationTest = () => {
     setSortOrder(sortOrder === "asc" ? "desc" : "asc");
   };
 
+  const formatExcelData = (data) => {
+    // Create a copy of the data and format date and time fields
+    const formattedData = data.map((item) => ({
+      ...item,
+      Notification_Date: formatDate(item.Notification_Date),
+      Notification_Time: formatTime(item.Notification_Time),
+    }));
+    return formattedData;
+  };
+
+  const handleDownloadExcel = () => {
+    const fileName = "filteredData.xlsx";
+    const formattedData = formatExcelData(filteredData); // Format the data
+    const worksheet = XLSX.utils.json_to_sheet(formattedData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    XLSX.writeFile(workbook, fileName);
+  };
+
   return (
     <div>
       {showTokenExpiredPopup && <TokenExpiredPopup />}
@@ -122,30 +145,50 @@ const NotificationTest = () => {
         </h1>
         <LogoutButton />
       </div>
-      <div className='flex justify-between my-4'>
+
+      <div className='flex justify-between items-center px-20 mt-2'>
         <div>
           <input
             type='date'
-            className='border p-1'
+            className=' p-1 custom-border rounded-md'
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
           />
           <span className='mx-2'>to</span>
           <input
             type='date'
-            className='border p-1'
+            className='p-1 custom-border rounded-md'
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
           />
           <button
-            className='px-4 py-2 bg-[#b4ed47] text-white rounded-md ml-2'
+            className='px-4 py-2 bg-[#b4ed47] text-white font-semibold rounded-md ml-2'
             onClick={handleApplyFilter}
           >
-            Apply Filter
+            Filter{" "}
           </button>
-          <button onClick={handleSort}>Sort</button>
+        </div>
+        <div>
+          <button
+            className='custom-border px-4 py-2 bg-[#b4ed47] text-white rounded-md ml-2'
+            onClick={handleSort}
+          >
+            <span>
+              <FaSortAlphaDownAlt size={20} />
+            </span>
+          </button>
+          <button
+            className='custom-border px-4 py-2 bg-[#b4ed47] text-white rounded-md ml-2'
+            onClick={handleDownloadExcel}
+          >
+            <span>
+              {" "}
+              <RiFileExcel2Fill size={20} />
+            </span>
+          </button>
         </div>
       </div>
+
       {loading ? (
         <LoadingSpinner text='Loading...' />
       ) : (

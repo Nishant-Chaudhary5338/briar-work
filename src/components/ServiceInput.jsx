@@ -191,6 +191,22 @@ const ServiceInput = () => {
                 onCheckboxChange={handleCheckboxChange}
               />
             </div>
+            <div className='flex space-x-2 mt-1 items-center'>
+              <span className=' text-sm text-gray-700 font-semibold w-28'>
+                Functional Location
+              </span>
+              <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
+                Under Dev
+              </span>
+            </div>
+            <div className='flex space-x-2 mt-1 items-center'>
+              <span className=' text-sm text-gray-700 font-semibold w-28'>
+                Planner Group
+              </span>
+              <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
+                Under Dev
+              </span>
+            </div>
           </div>
           <div className='space-y-2 mt-2'>
             <div className=''>

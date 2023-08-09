@@ -54,14 +54,7 @@ const UpdateRender = ({ data }) => {
             {data?.ZendD} / {data?.ZendT}
           </span>
         </div>
-        <div className='flex space-x-2 items-center'>
-          <span className='text-sm text-gray-700 font-semibold w-28'>
-            Work Centre:
-          </span>
-          <span className='border border-[#b4ed47] rounded-md px-4'>
-            {data?.WorkCentre}
-          </span>
-        </div>
+
         <div className='flex space-x-2 items-center'>
           <span className='text-sm text-gray-700 font-semibold w-28'>
             Cost Centre:

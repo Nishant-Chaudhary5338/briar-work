@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import StatusChangedPopup from "../../small-components/StatusChangedPopup";
+import EditPopup from "../../small-components/EditPopup";
 
 const ApproveRender = ({ data }) => {
   const [popupVisible, setPopupVisible] = useState(false);
   const [popupContent, setPopupContent] = useState({ status: "", typ: "" });
+  const [editPopupVisible, setEditPopupVisible] = useState(false);
   console.log(data?.ZitemNo);
   const Znumber = data?.ZitemNo;
   const handleClick = async (statusInt) => {
@@ -61,6 +63,15 @@ const ApproveRender = ({ data }) => {
           <span className='border border-[#b4ed47] rounded-md px-4 py-2 min-w-[200px] whitespace-pre-wrap'>
             {data?.Zdesc}
           </span>
+          <button
+            onClick={() => setEditPopupVisible(true)}
+            className='text-blue-500 underline'
+          >
+            Edit
+          </button>
+          {editPopupVisible && (
+            <EditPopup onClose={() => setEditPopupVisible(false)} />
+          )}
         </div>
         <div className='flex space-x-2 items-center'>
           <span className='text-sm text-gray-700 font-semibold w-28'>

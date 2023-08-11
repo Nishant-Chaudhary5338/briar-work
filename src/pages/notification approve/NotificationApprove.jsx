@@ -202,6 +202,11 @@ const NotificationApprove = () => {
                 <th className='w-1/6 custom-border'>Notification</th>
                 <th className='w-1/6 custom-border'>Reported By</th>
                 <th className='w-1/6 custom-border'>Equipment No.</th>
+                <th className='w-1/6 custom-border'>Functional Location </th>
+                <th className='w-1/6 custom-border'>FL Description</th>
+                <th className='w-1/6 custom-border'>Planner Group</th>
+                <th className='w-1/6 custom-border'>Status</th>
+                <th className='w-1/6 custom-border'>Maintaince Order</th>
                 <th className='w-1/6 custom-border'>Date</th>
                 <th className='w-1/6 custom-border'>Time</th>
                 <th className='w-2/6 custom-border'>Description</th>
@@ -217,6 +222,11 @@ const NotificationApprove = () => {
                   <td className='custom-border'>{item.Notification}</td>
                   <td className='custom-border'>{item.Reported_By}</td>
                   <td className='custom-border'>{item.Equipment_number}</td>
+                  <td className='custom-border'>{item.funn_loca}</td>
+                  <td className='custom-border'>{item.func_loca_Desc}</td>
+                  <td className='custom-border'>{item.plan_grp}</td>
+                  <td className='custom-border'>{item.statustext}</td>
+                  <td className='custom-border'>{item.manit_order}</td>
                   <td className='custom-border'>
                     {formatDate(item.Notification_Date)}
                   </td>

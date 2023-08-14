@@ -28,6 +28,7 @@ const ServiceInput = () => {
   const [searchPopup, setSearchPopup] = useState(false);
   const [checkboxChecked, setCheckboxChecked] = useState(false);
   const [help, setHelp] = useState([]);
+  const [functionalLocation, setFunctionalLocation] = useState("");
 
   useEffect(() => {
     const fetchHelp = async () => {
@@ -60,6 +61,11 @@ const ServiceInput = () => {
   const handleSelectEquipment = (equipmentNo) => {
     setEquipmentNo(equipmentNo); // Set the equipment number in the state of the parent component
   };
+
+  const handleSelectFunctionalLocation = (functionalLocation) => {
+    setFunctionalLocation(functionalLocation);
+  };
+  console.log(functionalLocation);
 
   const handleSearchOpenPopup = () => {
     setSearchPopup(true);
@@ -191,22 +197,6 @@ const ServiceInput = () => {
                 onCheckboxChange={handleCheckboxChange}
               />
             </div>
-            <div className='flex space-x-2 mt-1 items-center'>
-              <span className=' text-sm text-gray-700 font-semibold w-28'>
-                Functional Location
-              </span>
-              <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
-                Under Dev
-              </span>
-            </div>
-            <div className='flex space-x-2 mt-1 items-center'>
-              <span className=' text-sm text-gray-700 font-semibold w-28'>
-                Planner Group
-              </span>
-              <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
-                Under Dev
-              </span>
-            </div>
           </div>
           <div className='space-y-2 mt-2'>
             <div className=''>
@@ -230,8 +220,10 @@ const ServiceInput = () => {
         <div>
           <h4 className='text-md font-semibold'>Equipment Information:</h4>
           <div className='space-y-2 mt-4'>
-            <div className='space-x-4 flex'>
-              <span>Equipment Number</span>
+            <div className='space-x-4  flex'>
+              <span className='text-sm text-gray-700 font-semibold'>
+                Equipment Number
+              </span>
               <input
                 value={equipmentNo}
                 onChange={(e) => setEquipmentNo(e.target.value)}
@@ -250,12 +242,21 @@ const ServiceInput = () => {
                   <SearchPopup
                     onClose={handleSearchClosePopup}
                     onSelectEquipment={handleSelectEquipment}
+                    onSelectFunctionalLocation={handleSelectFunctionalLocation}
                     data={help}
                   />
                 )}
               </div>
             </div>
-            <div className='space-x-4 flex items-center'>
+            <div className='flex space-x-2 mt-1 items-center'>
+              <span className=' text-sm text-gray-700 font-semibold pr-1'>
+                Functional Location
+              </span>
+              <span className='border border-[#b4ed47] w-30 h-8 p-[2px] rounded-md pr-20'>
+                {functionalLocation}
+              </span>
+            </div>
+            <div className='space-x-4 text-sm text-gray-700 font-semibold flex items-center'>
               <span>General Description</span>
               <textarea
                 onChange={handleChange}

@@ -23,7 +23,9 @@ const EditPopup = ({ onClose, onSave }) => {
   return (
     <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
       <div className='bg-white w-80 p-6 rounded-md'>
-        <h2 className='text-2xl text-center font-bold mb-4'>Edit Value</h2>
+        <h2 className='text-2xl text-center font-bold mb-4'>
+          Edit Description
+        </h2>
         <input
           type='text'
           value={inputValue}

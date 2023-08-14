@@ -4,15 +4,24 @@ import { PiMagnifyingGlassDuotone } from "react-icons/pi";
 import TokenExpiredPopup from "./TokenExpiredPopup";
 import LoadingSpinner from "./LoadingSpinner";
 
-const SearchPopup = ({ onClose, onSelectEquipment, data }) => {
+const SearchPopup = ({
+  onClose,
+  onSelectEquipment,
+  data,
+  onSelectFunctionalLocation,
+}) => {
   const [loading, setLoading] = useState(true);
   const [selectedEquipment, setSelectedEquipment] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [showTokenExpiredPopup, setShowTokenExpiredPopup] = useState(false); // State to show/hide the popup
+  const [selectedFunctionalLocation, setSelectedFunctionalLocation] =
+    useState(null);
 
-  const handleRowClick = (equnr) => {
+  const handleRowClick = (equnr, funcation_location) => {
     setSelectedEquipment(equnr);
     onSelectEquipment(equnr);
+    setSelectedFunctionalLocation(funcation_location);
+    onSelectFunctionalLocation(funcation_location);
     onClose();
   };
 
@@ -41,7 +50,7 @@ const SearchPopup = ({ onClose, onSelectEquipment, data }) => {
     >
       {showTokenExpiredPopup && <TokenExpiredPopup />}{" "}
       <div
-        className='bg-white h-3/4 w-96 p-6 rounded-md'
+        className='bg-white h-3/4 w-[500px] p-6 rounded-md'
         onClick={(e) => e.stopPropagation()}
       >
         <div className='flex justify-end'></div>
@@ -69,8 +78,11 @@ const SearchPopup = ({ onClose, onSelectEquipment, data }) => {
                     <th className='w-1/3 px-4 border-[#b4ed47] border'>
                       Number
                     </th>
-                    <th className='w-2/3 px-4 border-[#b4ed47] border '>
+                    <th className='w-1/3 px-4 border-[#b4ed47] border '>
                       Description
+                    </th>
+                    <th className='w-1/3 px-4 border-[#b4ed47] border '>
+                      Functional Location
                     </th>
                   </tr>
                 </thead>
@@ -79,17 +91,23 @@ const SearchPopup = ({ onClose, onSelectEquipment, data }) => {
                     <tr
                       key={item.Equnr}
                       className={`cursor-pointer table-fixed  hover:bg-[#b4ed47] ${
-                        selectedEquipment === item.Equnr
+                        selectedEquipment === item.Equnr ||
+                        selectedFunctionalLocation === item.funcation_location
                           ? "border border-[#b4ed47]"
                           : ""
                       }`}
-                      onClick={() => handleRowClick(item.Equnr)}
+                      onClick={() =>
+                        handleRowClick(item.Equnr, item.funcation_location)
+                      }
                     >
                       <td className='border w-1/3 border-[#b4ed47] px-4'>
                         {item.Equnr}
                       </td>
-                      <td className='border w-2/3 border-[#b4ed47] px-4'>
+                      <td className='border w-1/3 border-[#b4ed47] px-4'>
                         {item.Eqktx}
+                      </td>
+                      <td className='border w-1/3 border-[#b4ed47] px-4'>
+                        {item.funcation_location}
                       </td>
                     </tr>
                   ))}

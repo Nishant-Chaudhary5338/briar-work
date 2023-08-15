@@ -9,6 +9,7 @@ const SearchPopup = ({
   onSelectEquipment,
   data,
   onSelectFunctionalLocation,
+  onSelectPlannerGroup,
 }) => {
   const [loading, setLoading] = useState(true);
   const [selectedEquipment, setSelectedEquipment] = useState(null);
@@ -16,12 +17,15 @@ const SearchPopup = ({
   const [showTokenExpiredPopup, setShowTokenExpiredPopup] = useState(false); // State to show/hide the popup
   const [selectedFunctionalLocation, setSelectedFunctionalLocation] =
     useState(null);
+  const [selectedPlannerGroup, setSelectedPlannerGroup] = useState(null);
 
-  const handleRowClick = (equnr, funcation_location) => {
+  const handleRowClick = (equnr, funcation_location, plan_grp) => {
     setSelectedEquipment(equnr);
     onSelectEquipment(equnr);
     setSelectedFunctionalLocation(funcation_location);
     onSelectFunctionalLocation(funcation_location);
+    setSelectedPlannerGroup(plan_grp);
+    onSelectPlannerGroup(plan_grp);
     onClose();
   };
 
@@ -84,6 +88,9 @@ const SearchPopup = ({
                     <th className='w-1/3 px-4 border-[#b4ed47] border '>
                       Functional Location
                     </th>
+                    <th className='w-1/3 px-4 border-[#b4ed47] border '>
+                      Planner Group
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -97,7 +104,11 @@ const SearchPopup = ({
                           : ""
                       }`}
                       onClick={() =>
-                        handleRowClick(item.Equnr, item.funcation_location)
+                        handleRowClick(
+                          item.Equnr,
+                          item.funcation_location,
+                          item.plan_grp,
+                        )
                       }
                     >
                       <td className='border w-1/3 border-[#b4ed47] px-4'>
@@ -108,6 +119,9 @@ const SearchPopup = ({
                       </td>
                       <td className='border w-1/3 border-[#b4ed47] px-4'>
                         {item.funcation_location}
+                      </td>
+                      <td className='border w-1/3 border-[#b4ed47] px-4'>
+                        {item.plan_grp}
                       </td>
                     </tr>
                   ))}

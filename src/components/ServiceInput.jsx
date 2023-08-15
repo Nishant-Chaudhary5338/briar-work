@@ -88,6 +88,10 @@ const ServiceInput = () => {
   const handleSelectFunctionalLocation = (functionalLocation) => {
     setFunctionalLocation(functionalLocation);
   };
+
+  const handleSelectPlannerGroup = (plannerGroup) => {
+    setPlannerGroup(plannerGroup);
+  };
   console.log(functionalLocation);
 
   const handleSearchOpenPopup = () => {
@@ -236,12 +240,12 @@ const ServiceInput = () => {
                 className='custom-border rounded-md'
               >
                 <option value=''>Select an Option</option>
-                <option value='N01'>Mechanical</option>
-                <option value='N02'>North Site</option>
-                <option value='N04'>Facilities</option>
-                <option value='N06'>E, I & C</option>
-                <option value='N08'>PPE Consumables</option>
-                <option value='N09'>Operational</option>
+                <option value='N01'>Mechanical - N01</option>
+                <option value='N02'>North Site - N02</option>
+                <option value='N04'>Facilities - N03</option>
+                <option value='N06'>E, I & C - N06</option>
+                <option value='N08'>PPE Consumables - N08</option>
+                <option value='N09'>Operational - N09</option>
                 {/* Add more options as needed */}
               </select>
             </div>
@@ -291,6 +295,7 @@ const ServiceInput = () => {
                     onClose={handleSearchClosePopup}
                     onSelectEquipment={handleSelectEquipment}
                     onSelectFunctionalLocation={handleSelectFunctionalLocation}
+                    onSelectPlannerGroup={handleSelectPlannerGroup}
                     data={help}
                   />
                 )}

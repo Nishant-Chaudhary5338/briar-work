@@ -23,6 +23,14 @@ const UpdateRender = ({ data }) => {
         </div>
         <div className='flex space-x-2 items-center'>
           <span className='text-sm text-gray-700 font-semibold w-28'>
+            Long Description:
+          </span>
+          <span className='border border-[#b4ed47] rounded-md px-4 py-2 min-w-[200px] whitespace-pre-wrap'>
+            {data?.Desc2}
+          </span>
+        </div>
+        <div className='flex space-x-2 items-center'>
+          <span className='text-sm text-gray-700 font-semibold w-28'>
             Equipment:
           </span>
           <span className='border border-[#b4ed47] rounded-md px-4'>

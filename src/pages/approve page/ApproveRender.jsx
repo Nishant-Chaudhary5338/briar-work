@@ -81,6 +81,8 @@ const ApproveRender = ({ data }) => {
                 setEditedLongText(longText);
               }}
               zNumber={zNumber}
+              initialShortText={data?.Zdesc}
+              initialLongText={data?.Desc2}
             />
           )}
         </div>

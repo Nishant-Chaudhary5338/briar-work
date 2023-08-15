@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const EditPopup = ({ onClose, onSave, zNumber }) => {
-  const [shortInputValue, setShortInputValue] = useState("");
-  const [longInputValue, setLongInputValue] = useState("");
+const EditPopup = ({
+  onClose,
+  onSave,
+  zNumber,
+  initialShortText,
+  initialLongText,
+}) => {
+  const [shortInputValue, setShortInputValue] = useState(initialShortText);
+  const [longInputValue, setLongInputValue] = useState(initialLongText);
 
   const handleShortInputChange = (event) => {
     const value = event.target.value;

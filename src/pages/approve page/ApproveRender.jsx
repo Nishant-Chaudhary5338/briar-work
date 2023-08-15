@@ -175,36 +175,3 @@ const ApproveRender = ({ data }) => {
 };
 
 export default ApproveRender;
-
-/*
-const handleClick = async (statusInt) => {
-  try {
-    // ... (rest of the code)
-
-    if (
-      response.data &&
-      response.data["n0:ZbapiAlmNotifChangeusrstatResponse"]
-    ) {
-      const responseData =
-        response.data["n0:ZbapiAlmNotifChangeusrstatResponse"];
-      const status = responseData.Status;
-      const typ = responseData.Typ;
-
-      console.log("Setting popup content and visibility...");
-
-      // Open the success or error popup based on the 'typ' value
-      if (typ === "S") {
-        setPopupVisible(true);
-        setPopupContent({ status, typ });
-      } else if (typ === "E") {
-        setPopupVisible(true);
-        setPopupContent({ status, typ });
-      }
-    }
-
-    // ... (rest of the code)
-  } catch (error) {
-    console.error("API Error:", error);
-  }
-};
-*/

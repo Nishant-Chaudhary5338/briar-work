@@ -1,7 +1,8 @@
 import axios from 'axios';
+import baseUrl from '../api/apiConfig';
 
 export const loginUser = async (username, password) => {
-  const url = `http://localhost:3002/api/token`; // Replace with your API endpoint URL
+  const url = `${baseUrl}/api/token`; // Replace with your API endpoint URL
   const base64Credentials = window.btoa(`${username}:${password}`);
 
   try {

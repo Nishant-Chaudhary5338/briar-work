@@ -1,4 +1,5 @@
 import axios from 'axios';
+import baseUrl from '../api/apiConfig';
 
 export const saveTextUpdate = async (zNumber, shortInputValue, longInputValue, access_token) => {
   try {
@@ -11,7 +12,7 @@ export const saveTextUpdate = async (zNumber, shortInputValue, longInputValue, a
     };
 
     const response = await axios.post(
-      "http://localhost:3002/api/text_update", // Change this URL to your API endpoint
+      `${baseUrl}/api/text_update`, // Change this URL to your API endpoint
       requestBody,
       {
         headers: {

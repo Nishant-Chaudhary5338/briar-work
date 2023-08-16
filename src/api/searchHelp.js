@@ -1,9 +1,10 @@
 import axios from 'axios';
+import baseUrl from '../api/apiConfig';
 
 export const fetchHelpData = async (accessToken) => {
   try {
     const response = await axios.get(
-      "http://localhost:3002/api/help_equipment",
+      `${baseUrl}/api/help_equipment`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,

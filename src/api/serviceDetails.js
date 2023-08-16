@@ -1,9 +1,10 @@
 import axios from 'axios';
+import baseUrl from '../api/apiConfig';
 
 export const fetchServiceDetails = async (access_token, NotificationNumber) => {
   try {
     const response = await axios.post(
-      "http://localhost:3002/api/service_details",
+      `${baseUrl}/api/service_details`,
       { NotificationNumber },
       {
         headers: {

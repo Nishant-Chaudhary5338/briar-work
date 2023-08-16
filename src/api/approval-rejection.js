@@ -1,4 +1,5 @@
 import axios from 'axios';
+import baseUrl from '../api/apiConfig';
 
 export const ApproveRejectEntry = async (Znumber, statusInt, access_token) => {
   try {
@@ -11,7 +12,7 @@ export const ApproveRejectEntry = async (Znumber, statusInt, access_token) => {
     };
 
     const response = await axios.post(
-      "http://localhost:3002/api/update_entry",
+      `${baseUrl}/api/update_entry`,
       payload,
       {
         headers: {

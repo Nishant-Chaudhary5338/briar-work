@@ -1,9 +1,10 @@
 import axios from 'axios';
+import baseUrl from '../api/apiConfig';
 
 export const fetchNotificationData = async (accessToken, reportedBy) => {
   try {
     const response = await axios.get(
-      "http://localhost:3002/api/notification_list",
+      `${baseUrl}/api/notification_list`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,

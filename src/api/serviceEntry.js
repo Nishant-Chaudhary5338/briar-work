@@ -1,15 +1,10 @@
 import axios from "axios";
-
-
-
-
-
+import baseUrl from '../api/apiConfig';
 
 export const createServiceEntry = async (data) => {
   try {
-    const BASE_URL = "http://localhost:3002";
-const access_token = localStorage.getItem("access_token")
-    const response = await axios.post(`${BASE_URL}/api/service_entry`, data, {
+    const access_token = localStorage.getItem("access_token")
+    const response = await axios.post(`${baseUrl}/api/service_entry`, data, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${access_token}`

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import StatusChangedPopup from "../../small-components/StatusChangedPopup";
 import EditPopup from "../../small-components/EditPopup";
+import { ApproveRejectEntry } from "../../api/approval-rejection";
 
 const ApproveRender = ({ data }) => {
   const [popupVisible, setPopupVisible] = useState(false);
@@ -12,33 +13,22 @@ const ApproveRender = ({ data }) => {
   const [editedLongText, setEditedLongText] = useState(data?.Desc2);
   console.log(data?.ZitemNo);
   const Znumber = data?.ZitemNo;
+
   const handleClick = async (statusInt) => {
     try {
-      const payload = {
-        Imp: {
-          Znumber: Znumber,
-          StatusInt: statusInt,
-          StatusExt: "Stri",
-        },
-      };
-
       const access_token = localStorage.getItem("access_token");
-      const response = await axios.post(
-        "http://localhost:3002/api/update_entry",
-        payload,
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        },
+      const response = await ApproveRejectEntry(
+        Znumber,
+        statusInt,
+        access_token,
       );
 
-      console.log("payload", payload);
-      console.log("API Response:", response.data);
+      console.log("payload", { Znumber, statusInt, access_token });
+      console.log("API Response:", response);
 
       // Open the popup with the API response
       setPopupVisible(true);
-      setPopupContent(response.data);
+      setPopupContent(response);
     } catch (error) {
       console.error("API Error:", error);
     }

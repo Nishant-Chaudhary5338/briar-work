@@ -8,6 +8,7 @@ import * as XLSX from "xlsx";
 import { FaFilter } from "react-icons/fa";
 import { FaSortAlphaDownAlt } from "react-icons/fa";
 import { RiFileExcel2Fill } from "react-icons/ri";
+import { fetchNotificationData } from "../../api/notificationList";
 
 const NotificationApprove = () => {
   const [data, setData] = useState([]);
@@ -21,35 +22,21 @@ const NotificationApprove = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  useEffect(() => {
     // Set filteredData to data whenever data changes (initial load or new API response)
     setFilteredData(data);
   }, [data]);
 
   const fetchData = async () => {
     try {
-      // Get the access_token from local storage
-      const access_token = localStorage.getItem("access_token");
-      console.log(access_token);
+      const accessToken = localStorage.getItem("access_token");
       const reportedBy = localStorage.getItem("username");
-
-      // Make the API call with the access_token in the headers
-      const response = await axios.get(
-        "http://localhost:3002/api/notification_list",
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-            "X-Reported-By": reportedBy,
-          },
-        },
+      console.log(accessToken, reportedBy);
+      const notificationData = await fetchNotificationData(
+        accessToken,
+        reportedBy,
       );
-
-      setData(response.data.znotifc_view_helpType);
-      console.log(response.data.znotifc_view_helpType);
-
+      setData(notificationData);
+      console.log(notificationData);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -57,6 +44,9 @@ const NotificationApprove = () => {
       setShowTokenExpiredPopup(true);
     }
   };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const formatDate = (dateString) => {
     const dateObj = new Date(dateString);

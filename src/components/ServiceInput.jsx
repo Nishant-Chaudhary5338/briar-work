@@ -10,7 +10,7 @@ import SuccessPopup from "../small-components/SuccessPopup";
 import ErrorPopup from "../small-components/ErrorPopup";
 import SearchPopup from "../small-components/SearchPopup";
 import TimeInput from "./TimeInput";
-import axios from "axios";
+import { fetchHelpData } from "../api/searchHelp";
 
 const ServiceInput = () => {
   const [callNumber, setCallNumber] = useState("");
@@ -31,51 +31,21 @@ const ServiceInput = () => {
   const [functionalLocation, setFunctionalLocation] = useState("");
   const [plannerGroup, setPlannerGroup] = useState([]);
 
+  // pre-fetching serachHelp (Equipment etc)
   useEffect(() => {
+    const accessToken = localStorage.getItem("access_token");
+
     const fetchHelp = async () => {
       try {
-        // Get the access_token from localStorage
-        const accessToken = localStorage.getItem("access_token");
-
-        const response = await axios.get(
-          "http://localhost:3002/api/help_equipment",
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`, // Add the access_token to the headers
-              "Content-Type": "application/json",
-            },
-          },
-        );
-        setHelp(response.data.znotifc_epqui_helpType);
-        console.log(response.data.znotifc_epqui_helpType);
+        const helpData = await fetchHelpData(accessToken);
+        setHelp(helpData);
+        console.log(helpData);
       } catch (error) {
         console.error("Error:", error);
       }
     };
 
     fetchHelp();
-  }, []);
-
-  useEffect(() => {
-    const fetchPlannerGroup = async () => {
-      try {
-        const access_token = localStorage.getItem("access_token");
-        const response = await axios.get(
-          "http://localhost:3002/api/planner_group",
-          {
-            headers: {
-              Authorization: `Bearer ${access_token}`,
-              "Content-Type": "application/json",
-            },
-          },
-        );
-        setPlannerGroup(response.data.ZV_T024IType);
-        console.log(response.data.ZV_T024IType);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
-    fetchPlannerGroup();
   }, []);
 
   const handleCheckboxChange = (isChecked) => {
@@ -124,6 +94,7 @@ const ServiceInput = () => {
     setShortDesc(e.target.value);
   };
 
+  //  create entry call
   const handleSendResponse = () => {
     const createdBy = localStorage.getItem("username");
     const data = {

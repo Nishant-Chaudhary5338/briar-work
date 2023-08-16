@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { loginUser } from "../../api/login";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -16,175 +16,26 @@ const LoginPage = () => {
       setError("Please enter a username and password.");
       return;
     }
-    console.log(username, password);
-    localStorage.setItem("username", username);
-    setTimeout(() => {
-      localStorage.removeItem("username");
-      console.log("Access_token expired. Removed from local storage.");
-    }, 30 * 60 * 1000); // 2 minutes in milliseconds
 
-    const url = `http://localhost:3002/api/token`; // Replace with your API endpoint URL
-    const base64Credentials = window.btoa(`${username}:${password}`);
-    console.log("base64", base64Credentials);
-    localStorage.setItem("base64", base64Credentials);
-    console.log("base64", base64Credentials);
+    try {
+      const accessToken = await loginUser(username, password);
 
-    axios
-      .get(url, {
-        headers: {
-          Authorization: `Basic ${base64Credentials}`,
-        },
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          console.log("Access Token:", response.data.accessToken);
-          // Save the access_token in localStorage
-          localStorage.setItem("access_token", response.data.accessToken);
+      if (accessToken) {
+        console.log("Access Token:", accessToken);
+        localStorage.setItem("access_token", accessToken);
+        localStorage.setItem("username", username);
 
-          // Set a timeout to remove the access_token from localStorage after 2 minutes
-          setTimeout(() => {
-            localStorage.removeItem("access_token");
-            console.log("Access_token expired. Removed from local storage.");
-          }, 30 * 60 * 1000); // 2 minutes in milliseconds
+        // Set a timeout to remove the access_token from localStorage after 2 minutes
+        setTimeout(() => {
+          localStorage.removeItem("access_token");
+          console.log("Access_token expired. Removed from local storage.");
+        }, 30 * 60 * 1000); // 2 minutes in milliseconds
 
-          console.log(response.data);
-          navigation("home");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    /*try {
-      const getResponse = await axios.post(
-        "https://oauthasservices-dk3zgb7znv.ap1.hana.ondemand.com/oauth2/api/v1/token?grant_type=client_credentials",
-        {
-          Authorization:
-            "Basic ZThlNDMxNDMtYWJkZi0zYjk2LWIxMjEtYzg3NDEzMjVhMTBkOmhBNnRMVDhRIXFvP0k5M2FxNEJJ",
-        }
-      );
-      if (getResponse.status === 200) {
-        console.log("Status 200 OK, successfull call");
-        const { access_token, expires_in } = response.data;
-        // Save the new access_token and its validity in local storage
-        localStorage.setItem("access_token", access_token);
-        localStorage.setItem("expires_in", expires_in);
-        console.log("New access_token saved:", access_token);
-        console.log("Access token validity:", expires_in);
-        //navigation("/home");
+        navigation("home");
       }
-    } catch (e) {
-      console.log(e, "api call failed");
+    } catch (error) {
+      console.log(error);
     }
-
-    /*if (access_token) {
-      // Valid access_token exists
-      console.log("1. Existing access_token found:", access_token);
-      try {
-        const getResponse = await axios.get(
-          "https://api-sdm-di.cfapps.eu10.hana.ondemand.com/browser/SAFEX_INDIA_DEV_CMIS1/?repository_id =SAFEX_INDIA_DEV_CMIS1&cmisSelector=query&q=SELECT cmis:objectId, cmis:name FROM cmis:folder",
-          {
-            headers: {
-              Authorization: `Bearer ${access_token}`,
-            },
-          },
-        );
-
-        if (getResponse.status === 200) {
-          console.log("7. API GET request successful");
-          // Navigate to home or perform further actions
-          navigation("/home");
-        } else {
-          console.log("7. Error occurred while making the API GET request");
-        }
-      } catch (error) {
-        console.log(
-          "7. Error occurred while making the API GET request:",
-          error,
-        );
-      }
-    } else {
-      // No access_token found
-      console.log("1. No existing access_token found.");
-      console.log(
-        "3. Making POST API request to fetch new token via https://dms-r9vvatw2.authentication.eu10.hana.ondemand.com/oauth/token?grant_type=client_credentials",
-      );
-
-      try {
-        const response = await axios.post(
-          "https://dms-r9vvatw2.authentication.eu10.hana.ondemand.com/oauth/token?grant_type=client_credentials",
-          null,
-          {
-            headers: {
-              Authorization:
-                "Basic c2ItNzhmNGFiNWQtNGZkYy00MTJhLThmZGEtOGRiZDM3OWRlMjMzIWIyMDE3ODJ8c2RtLWRpLVNETV9ESV9QUk9ELXByb2QhYjQxMDY0OlVzS3hRbmI3elFvSGF6Z1c3b0tlek42R0Fabz0=",
-            },
-          },
-        );
-
-        console.log(
-          "4. Made POST API request for fetching token via https://dms-r9vvatw2.authentication.eu10.hana.ondemand.com/oauth/token?grant_type=client_credentials",
-        );
-
-        if (response.status === 200) {
-          console.log(
-            "5. POST request successful via https://dms-r9vvatw2.authentication.eu10.hana.ondemand.com/oauth/token?grant_type=client_credentials",
-          );
-          const { access_token, expires_in } = response.data;
-          // Save the new access_token and its validity in local storage
-          localStorage.setItem("access_token", access_token);
-          localStorage.setItem("expires_in", expires_in);
-          console.log("New access_token saved:", access_token);
-          console.log("Access token validity:", expires_in);
-
-          // remove access_token
-
-          // Remove access_token from local storage after expires_in milliseconds
-          const removeExpiredToken = () => {
-            const expires_in = localStorage.getItem("expires_in");
-            const expirationTime = parseInt(expires_in) * 1000; // Convert expires_in to milliseconds
-
-            setTimeout(() => {
-              localStorage.removeItem("access_token");
-              localStorage.removeItem("expires_in");
-              console.log("Access_token expired. Removed from local storage.");
-            }, expirationTime);
-          };
-          removeExpiredToken();
-
-          // Make API GET request with the new access_token
-          console.log("6. Making API GET request with access_token");
-
-          try {
-            const getResponse = await axios.post(
-              "https://api-sdm-di.cfapps.eu10.hana.ondemand.com/browser/SAFEX_INDIA_DEV_CMIS1/?repository_id =SAFEX_INDIA_DEV_CMIS1&cmisSelector=query&q=SELECT cmis:objectId, cmis:name FROM cmis:folder",
-              {
-                headers: {
-                  Authorization: `Bearer ${access_token}`,
-                },
-              },
-            );
-
-            if (getResponse.status === 200) {
-              console.log("7. API GET request successful");
-              // Navigate to home or perform further actions
-              navigation("/home");
-            } else {
-              console.log("7. Error occurred while making the API GET request");
-            }
-          } catch (error) {
-            console.log(
-              "7. Error occurred while making the API GET request:",
-              error,
-            );
-          }
-        } else {
-          console.log("5. Error occurred while obtaining the access_token");
-        }
-      } catch (error) {
-        console.log("6. Error occurred while making the POST request:", error);
-      }
-    }*/
   };
 
   return (

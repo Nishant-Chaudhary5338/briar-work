@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import LogoutButton from "../../small-components/LogoutButton";
 import UpdateRender from "./UpdateRender";
 import LoadingSpinner from "../../small-components/LoadingSpinner";
+import { fetchServiceDetails } from "../../api/serviceDetails";
 const UpdatePage = () => {
   const [responseData, setResponseData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -14,23 +15,16 @@ const UpdatePage = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
   const fetchData = async () => {
     try {
       const access_token = localStorage.getItem("access_token");
-      console.log(access_token);
-      const response = await axios.post(
-        "http://localhost:3002/api/service_details",
-        { NotificationNumber },
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        },
-      );
+      const notifNumber = NotificationNumber;
 
-      setResponseData(response.data);
+      const data = await fetchServiceDetails(access_token, notifNumber);
+      setResponseData(data);
       setLoading(false);
-      console.log(response.data);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }

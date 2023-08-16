@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { saveTextUpdate } from "../api/textUpdate";
 
 const EditPopup = ({
   onClose,
@@ -27,25 +28,14 @@ const EditPopup = ({
 
   const handleSave = async () => {
     try {
-      const requestBody = {
-        Header: {
-          Znumber: zNumber,
-          GenDesc1: shortInputValue,
-          GenDesc: longInputValue,
-        },
-      };
-
       const access_token = localStorage.getItem("access_token");
-      const response = await axios.post(
-        "http://localhost:3002/api/text_update", // Change this URL to your API endpoint
-        requestBody,
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        },
+      const response = await saveTextUpdate(
+        zNumber,
+        shortInputValue,
+        longInputValue,
+        access_token,
       );
-      console.log(response.data);
+      console.log(response);
       onSave(shortInputValue, longInputValue);
       onClose();
     } catch (error) {
@@ -93,47 +83,3 @@ const EditPopup = ({
 };
 
 export default EditPopup;
-
-/*
-
-
-import React, { useState } from "react";
-import axios from "axios";
-
-const EditPopup = ({ onClose, onSave, zNumber }) => {
-  const [shortInputValue, setShortInputValue] = useState("");
-  const [longInputValue, setLongInputValue] = useState("");
-
-  const handleSave = async () => {
-    try {
-      const requestBody = {
-        Header: {
-          Znumber: zNumber,
-          GenDesc1: shortInputValue,
-          GenDesc: longInputValue,
-        },
-      };
-
-      const access_token = localStorage.getItem("access_token");
-      const response = await axios.post(
-        "http://localhost:3002/api/text_update", // Change this URL to your API endpoint
-        requestBody,
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        },
-      );
-
-      onSave(shortInputValue, longInputValue);
-      onClose();
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  // ... (rest of your component code) ...
-};
-
-export default EditPopup;
-*/

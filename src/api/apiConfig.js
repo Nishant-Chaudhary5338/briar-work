@@ -7,7 +7,7 @@ const environments = {
 };
 
 // Choose the environment you want to use
-const selectedEnvironment = environments.engsap;
+const selectedEnvironment = environments.local;
 
 const baseUrls = {
   local: 'http://localhost:3002',

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
 import StatusChangedPopup from "../../small-components/StatusChangedPopup";
 import EditPopup from "../../small-components/EditPopup";
 import { ApproveRejectEntry } from "../../api/approval-rejection";
+import { useNavigate } from "react-router-dom";
 
 const ApproveRender = ({ data }) => {
   const [popupVisible, setPopupVisible] = useState(false);
@@ -13,6 +13,7 @@ const ApproveRender = ({ data }) => {
   const [editedLongText, setEditedLongText] = useState(data?.Desc2);
   console.log(data?.ZitemNo);
   const Znumber = data?.ZitemNo;
+  const navigate = useNavigate();
 
   const handleClick = async (statusInt) => {
     try {
@@ -36,6 +37,7 @@ const ApproveRender = ({ data }) => {
 
   const handleClosePopup = () => {
     setPopupVisible(false);
+    navigate("/approve");
   };
 
   return (

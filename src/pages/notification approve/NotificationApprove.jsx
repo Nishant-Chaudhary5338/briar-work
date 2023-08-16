@@ -131,7 +131,7 @@ const NotificationApprove = () => {
       {/* Show the TokenExpiredPopup when showTokenExpiredPopup is true */}
       <div className='h-12 bg-[#71a311] items-center flex justify-between px-2'>
         <h1 className='text-white text-2xl font-semibold '>
-          List of All Notifications pending for Approval / Rejection
+          List of All Notifications Pending for Approval / Rejection
         </h1>
         <LogoutButton />
       </div>

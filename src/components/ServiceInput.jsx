@@ -110,6 +110,7 @@ const ServiceInput = () => {
         ZendT: startTime,
         GenDesc1: shortDesc,
         GenDesc: savedText,
+        PlanGrp: plannerGroup,
       },
     };
     console.log(data);

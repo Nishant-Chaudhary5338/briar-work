@@ -203,10 +203,9 @@ const NotificationApprove = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredData &&
-              Array.isArray(filteredData) &&
-              filteredData.length > 0 ? (
-                filteredData.map((item) => (
+              {filteredData
+                .filter((item) => item.statustext === "Created") // Filter based on statustext
+                .map((item) => (
                   <tr
                     key={item.Notification}
                     className='hover:bg-[#b4ed47] text-center'
@@ -228,14 +227,7 @@ const NotificationApprove = () => {
                     </td>
                     <td className='custom-border'>{item.Description}</td>
                   </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan='11' className='text-center py-4'>
-                    No data available.
-                  </td>
-                </tr>
-              )}
+                ))}
             </tbody>
           </table>
         </div>

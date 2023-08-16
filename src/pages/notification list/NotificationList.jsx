@@ -203,39 +203,29 @@ const NotificationList = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredData &&
-              Array.isArray(filteredData) &&
-              filteredData.length > 0 ? (
-                filteredData.map((item) => (
-                  <tr
-                    key={item.Notification}
-                    className='hover:bg-[#b4ed47] text-center'
-                    onClick={() => handleRowClick(item.Notification)}
-                  >
-                    <td className='custom-border'>{item.Notification}</td>
-                    <td className='custom-border'>{item.Reported_By}</td>
-                    <td className='custom-border'>{item.Equipment_number}</td>
-                    <td className='custom-border'>{item.funn_loca}</td>
-                    <td className='custom-border'>{item.func_loca_Desc}</td>
-                    <td className='custom-border'>{item.plan_grp}</td>
-                    <td className='custom-border'>{item.statustext}</td>
-                    <td className='custom-border'>{item.manit_order}</td>
-                    <td className='custom-border'>
-                      {formatDate(item.Notification_Date)}
-                    </td>
-                    <td className='custom-border'>
-                      {formatTime(item.Notification_Time)}
-                    </td>
-                    <td className='custom-border'>{item.Description}</td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan='11' className='text-center py-4'>
-                    No data available.
+              {filteredData.map((item) => (
+                <tr
+                  key={item.Notification}
+                  className='hover:bg-[#b4ed47] text-center'
+                  onClick={() => handleRowClick(item.Notification)}
+                >
+                  <td className='custom-border'>{item.Notification}</td>
+                  <td className='custom-border'>{item.Reported_By}</td>
+                  <td className='custom-border'>{item.Equipment_number}</td>
+                  <td className='custom-border'>{item.funn_loca}</td>
+                  <td className='custom-border'>{item.func_loca_Desc}</td>
+                  <td className='custom-border'>{item.plan_grp}</td>
+                  <td className='custom-border'>{item.statustext}</td>
+                  <td className='custom-border'>{item.manit_order}</td>
+                  <td className='custom-border'>
+                    {formatDate(item.Notification_Date)}
                   </td>
+                  <td className='custom-border'>
+                    {formatTime(item.Notification_Time)}
+                  </td>
+                  <td className='custom-border'>{item.Description}</td>
                 </tr>
-              )}
+              ))}
             </tbody>
           </table>
         </div>

@@ -328,7 +328,7 @@ const ServiceInput = () => {
               </span>
             </div>
             <div className='flex space-x-2 mt-2 items-center'>
-              <span className=' text-sm text-gray-700 font-semibold w-28'>
+              <span className=' text-sm text-gray-700 font-semibold w-32'>
                 Planner Group
               </span>
               <select

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import TokenExpiredPopup from "../../small-components/TokenExpiredPopup";
 import { useNavigate } from "react-router-dom";
 import LogoutButton from "../../small-components/LogoutButton";
@@ -22,14 +21,19 @@ const NotificationApprove = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Set filteredData to data whenever data changes (initial load or new API response)
-    setFilteredData(data);
+    if (data === null) {
+      setFilteredData([]); // Set to an empty array when the response is null
+    } else if (data instanceof Array) {
+      setFilteredData(data); // Set to the data array when it's an array
+    } else {
+      setFilteredData([data]); // Wrap the single object in an array
+    }
   }, [data]);
 
   const fetchData = async () => {
     try {
       const accessToken = localStorage.getItem("access_token");
-      const reportedBy = localStorage.getItem("username");
+      const reportedBy = localStorage.getItem("username").toUpperCase();
       console.log(accessToken, reportedBy);
       const notificationData = await fetchNotificationData(
         accessToken,
@@ -181,44 +185,89 @@ const NotificationApprove = () => {
           </button>
         </div>
       </div>
-
       {loading ? (
         <LoadingSpinner text='Loading...' />
       ) : (
-        <div className='m-10 p-10'>
-          <table className='table-fixed w-full border-collapse border border-[#b4ed47]'>
-            <thead className=''>
-              <tr>
-                <th className='w-1/6 custom-border'>Notification</th>
-                <th className='w-1/6 custom-border'>Reported By</th>
-                <th className='w-1/6 custom-border'>Equipment No.</th>
-                <th className='w-1/6 custom-border'>Functional Location </th>
-                <th className='w-1/6 custom-border'>FL Description</th>
-                <th className='w-1/6 custom-border'>Planner Group</th>
-                <th className='w-1/6 custom-border'>Status</th>
-                <th className='w-1/6 custom-border'>Maintaince Order</th>
-                <th className='w-1/6 custom-border'>Date</th>
-                <th className='w-1/6 custom-border'>Time</th>
-                <th className='w-2/6 custom-border'>Description</th>
-              </tr>
-            </thead>
-            <tbody>
+        <div className='m-2'>
+          {filteredData && filteredData.length > 0 ? (
+            <table className='table-fixed w-full text-xs font-medium border-collapse border border-[#b4ed47]'>
+              <thead>
+                <tr>
+                  <th className='w-1/6 custom-border'>Notification</th>
+                  <th className='w-1/6 custom-border'>Reported By</th>
+                  <th className='w-1/6 custom-border'>Equipment No.</th>
+                  <th className='w-1/6 custom-border'>Functional Location </th>
+                  <th className='w-1/6 custom-border'>FL Description</th>
+                  <th className='w-1/6 custom-border'>Planner Group</th>
+                  <th className='w-1/6 custom-border'>Planner Group Name</th>
+                  <th className='w-1/6 custom-border'>Status</th>
+                  <th className='w-1/6 custom-border'>Maintaince Order</th>
+                  <th className='w-1/6 custom-border'>Date</th>
+                  <th className='w-1/6 custom-border'>Time</th>
+                  <th className='w-2/6 custom-border'>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredData
+                  .filter((item) => item?.statustext === "Created") // Filter based on statustext
+                  .map((item) => (
+                    <tr
+                      key={item?.Notification}
+                      className='hover:bg-[#b4ed47] text-center'
+                      onClick={() => handleRowClick(item?.Notification)}
+                    >
+                      <td className='custom-border'>{item?.Notification}</td>
+                      <td className='custom-border'>{item?.Reported_By}</td>
+                      <td className='custom-border'>
+                        {item?.Equipment_number}
+                      </td>
+                      <td className='custom-border'>{item?.funn_loca}</td>
+                      <td className='custom-border'>{item?.func_loca_Desc}</td>
+                      <td className='custom-border'>{item?.plan_grp}</td>
+                      <td className='custom-border'>{item?.plan_grp_name}</td>
+                      <td className='custom-border'>{item?.statustext}</td>
+                      <td className='custom-border'>{item?.manit_order}</td>
+                      <td className='custom-border'>
+                        {formatDate(item?.Notification_Date)}
+                      </td>
+                      <td className='custom-border'>
+                        {formatTime(item?.Notification_Time)}
+                      </td>
+                      <td className='custom-border'>{item?.Description}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          ) : (
+            <p className='text-center py-4'>No data available.</p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default NotificationApprove;
+
+/*
+<tbody>
               {filteredData
                 .filter((item) => item.statustext === "Created") // Filter based on statustext
                 .map((item) => (
                   <tr
                     key={item.Notification}
                     className='hover:bg-[#b4ed47] text-center'
-                    onClick={() => handleRowClick(item.Notification)}
+                    onClick={() => handleRowClick(item?.Notification)}
                   >
-                    <td className='custom-border'>{item.Notification}</td>
-                    <td className='custom-border'>{item.Reported_By}</td>
-                    <td className='custom-border'>{item.Equipment_number}</td>
-                    <td className='custom-border'>{item.funn_loca}</td>
-                    <td className='custom-border'>{item.func_loca_Desc}</td>
-                    <td className='custom-border'>{item.plan_grp}</td>
-                    <td className='custom-border'>{item.statustext}</td>
-                    <td className='custom-border'>{item.manit_order}</td>
+                    <td className='custom-border'>{item?.Notification}</td>
+                    <td className='custom-border'>{item?.Reported_By}</td>
+                    <td className='custom-border'>{item?.Equipment_number}</td>
+                    <td className='custom-border'>{item?.funn_loca}</td>
+                    <td className='custom-border'>{item?.func_loca_Desc}</td>
+                    <td className='custom-border'>{item?.plan_grp}</td>
+                    <td className='custom-border'>{item?.plan_grp_name}</td>
+                    <td className='custom-border'>{item?.statustext}</td>
+                    <td className='custom-border'>{item?.manit_order}</td>
                     <td className='custom-border'>
                       {formatDate(item.Notification_Date)}
                     </td>
@@ -229,11 +278,4 @@ const NotificationApprove = () => {
                   </tr>
                 ))}
             </tbody>
-          </table>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default NotificationApprove;
+            */

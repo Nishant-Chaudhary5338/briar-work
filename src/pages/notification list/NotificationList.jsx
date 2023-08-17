@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import TokenExpiredPopup from "../../small-components/TokenExpiredPopup";
 import { useNavigate } from "react-router-dom";
 import LogoutButton from "../../small-components/LogoutButton";

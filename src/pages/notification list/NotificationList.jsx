@@ -8,6 +8,7 @@ import { FaFilter } from "react-icons/fa";
 import { FaSortAlphaDownAlt } from "react-icons/fa";
 import { RiFileExcel2Fill } from "react-icons/ri";
 import { fetchNotificationData } from "../../api/notificationList";
+import HomeButton from "../../small-components/HomeButton";
 
 const NotificationList = () => {
   const [data, setData] = useState([]);
@@ -133,7 +134,8 @@ const NotificationList = () => {
     <div>
       {showTokenExpiredPopup && <TokenExpiredPopup />}
       {/* Show the TokenExpiredPopup when showTokenExpiredPopup is true */}
-      <div className='h-12 bg-[#71a311] items-center flex justify-between px-2'>
+      <div className='h-12 bg-[#71a311] items-center flex justify-between px-4'>
+        <HomeButton />
         <h1 className='text-white text-2xl font-semibold '>
           List of All Notifications
         </h1>

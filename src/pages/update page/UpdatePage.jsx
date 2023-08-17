@@ -6,6 +6,7 @@ import LogoutButton from "../../small-components/LogoutButton";
 import UpdateRender from "./UpdateRender";
 import LoadingSpinner from "../../small-components/LoadingSpinner";
 import { fetchServiceDetails } from "../../api/serviceDetails";
+import HomeButton from "../../small-components/HomeButton";
 const UpdatePage = () => {
   const [responseData, setResponseData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -32,7 +33,8 @@ const UpdatePage = () => {
 
   return (
     <div className=' bg-gray-50 h-screen'>
-      <div className='h-12 bg-[#71a311] items-center flex justify-between px-2'>
+      <div className='h-12 bg-[#71a311] items-center flex justify-between px-4'>
+        <HomeButton />
         <h1 className='text-white text-2xl font-semibold '>
           Service Update of Notification - {NotificationNumber}
         </h1>

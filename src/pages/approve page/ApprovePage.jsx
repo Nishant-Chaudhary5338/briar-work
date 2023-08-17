@@ -7,6 +7,7 @@ import LogoutButton from "../../small-components/LogoutButton";
 import LoadingSpinner from "../../small-components/LoadingSpinner";
 import ApproveRender from "./ApproveRender";
 import { fetchServiceDetails } from "../../api/serviceDetails";
+import HomeButton from "../../small-components/HomeButton";
 const ApprovePage = () => {
   const [responseData, setResponseData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -33,7 +34,8 @@ const ApprovePage = () => {
 
   return (
     <div className=' bg-gray-50 h-screen'>
-      <div className='h-12 bg-[#71a311] items-center flex justify-between px-2'>
+      <div className='h-12 bg-[#71a311] items-center flex justify-between px-4'>
+        <HomeButton />
         <h1 className='text-white text-2xl font-semibold '>
           Approve / Reject Notification - {NotificationNumber}
         </h1>

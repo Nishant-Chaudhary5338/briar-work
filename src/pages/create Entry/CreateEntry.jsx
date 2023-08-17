@@ -2,11 +2,13 @@ import React from "react";
 
 import ServiceInput from "../../components/ServiceInput";
 import LogoutButton from "../../small-components/LogoutButton";
+import HomeButton from "../../small-components/HomeButton";
 
 const CreateEntry = () => {
   return (
     <div className='overflow-x-hidden'>
-      <div className='h-12 bg-[#71a311] items-center flex justify-between px-2'>
+      <div className='h-12 bg-[#71a311] items-center flex justify-between px-4'>
+        <HomeButton />
         <h1 className='text-white text-2xl font-semibold '>
           Create Plant maintenance Notification
         </h1>

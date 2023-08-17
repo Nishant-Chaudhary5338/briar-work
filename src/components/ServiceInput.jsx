@@ -149,6 +149,7 @@ const ServiceInput = () => {
         PlanGrp: plannerGroup,
         FuncLoc: functionalLocation,
         CrDate: CrDate,
+        CrTime: CrTime,
       },
     };
     console.log(data);
@@ -266,21 +267,28 @@ const ServiceInput = () => {
             />
           </div>
           <div className='space-y-2 mt-2'>
-            <div className=''>
-              <span className=''>
-                <DateInput
-                  title='End Date'
-                  onDateChange={handleStartDateChange}
-                />
+            <div className='flex space-x-6 mt-2 items-center'>
+              <span className='w-24 text-sm text-gray-700 font-semibold'>
+                End Time
               </span>
+              <input
+                onChange={(e) => setStartTime(e.target.value)}
+                value={startTime}
+                className='custom-border rounded-md'
+                type='time'
+              />
             </div>
-            <div className=''>
-              <span className=''>
-                <TimeInput
-                  title='End Time'
-                  onTimeChange={handleStartTimeChange}
-                />
+
+            <div className='flex space-x-6 mt-2 items-center'>
+              <span className='w-24 text-sm text-gray-700 font-semibold'>
+                End Date
               </span>
+              <input
+                onChange={(e) => setStartDate(e.target.value)}
+                value={startDate}
+                className='custom-border rounded-md'
+                type='date'
+              />
             </div>
           </div>
         </div>

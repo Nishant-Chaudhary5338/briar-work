@@ -96,8 +96,6 @@ const ServiceInput = () => {
     setShortDesc(e.target.value);
   };
 
-  const apiFormattedCrTime = `${CrTime}:00`;
-  console.log(apiFormattedCrTime);
   //  create entry call
   const handleSendResponse = () => {
     const createdBy = localStorage.getItem("username");
@@ -119,7 +117,6 @@ const ServiceInput = () => {
     console.log(formData);
 
     if (
-      !checkboxChecked ||
       !createdBy ||
       !selectedOption ||
       !equipmentNo ||
@@ -129,8 +126,8 @@ const ServiceInput = () => {
       !savedText ||
       !plannerGroup ||
       !functionalLocation ||
-      !CrTime ||
-      !CrDate
+      !CrDate ||
+      !CrTime
     ) {
       //console.log(data);
       alert("All fields are mandatory");
@@ -152,7 +149,6 @@ const ServiceInput = () => {
         PlanGrp: plannerGroup,
         FuncLoc: functionalLocation,
         CrDate: CrDate,
-        CrTime: apiFormattedCrTime,
       },
     };
     console.log(data);
@@ -175,6 +171,7 @@ const ServiceInput = () => {
       })
       .catch((error) => {
         console.error(error);
+
         setErrorMessage("API request failed");
         setErrorPopup(true);
       });
@@ -245,11 +242,34 @@ const ServiceInput = () => {
               />
             </div>
           </div>
+          <div className='flex space-x-6 mt-2 items-center'>
+            <span className='w-24 text-sm text-gray-700 font-semibold'>
+              Start Time
+            </span>
+            <input
+              onChange={(e) => setCrTime(e.target.value)}
+              value={CrTime}
+              className='custom-border rounded-md'
+              type='time'
+            />
+          </div>
+
+          <div className='flex space-x-6 mt-2 items-center'>
+            <span className='w-24 text-sm text-gray-700 font-semibold'>
+              Start Date
+            </span>
+            <input
+              onChange={(e) => setCrDate(e.target.value)}
+              value={CrDate}
+              className='custom-border rounded-md'
+              type='date'
+            />
+          </div>
           <div className='space-y-2 mt-2'>
             <div className=''>
               <span className=''>
                 <DateInput
-                  title='Start Date'
+                  title='End Date'
                   onDateChange={handleStartDateChange}
                 />
               </span>
@@ -257,33 +277,10 @@ const ServiceInput = () => {
             <div className=''>
               <span className=''>
                 <TimeInput
-                  title='Start Time'
+                  title='End Time'
                   onTimeChange={handleStartTimeChange}
                 />
               </span>
-            </div>
-            <div className='flex space-x-6 items-center'>
-              <span className='w-24 text-sm text-gray-700 font-semibold'>
-                Cr Time
-              </span>
-              <input
-                onChange={(e) => setCrTime(e.target.value)}
-                value={CrTime}
-                className='custom-border rounded-md'
-                type='time'
-              />
-            </div>
-
-            <div className='flex space-x-6 items-center'>
-              <span className='w-24 text-sm text-gray-700 font-semibold'>
-                Cr Date
-              </span>
-              <input
-                onChange={(e) => setCrDate(e.target.value)}
-                value={CrDate}
-                className='custom-border rounded-md'
-                type='date'
-              />
             </div>
           </div>
         </div>

@@ -83,7 +83,15 @@ const UpdateRender = ({ data }) => {
             Planner Group:
           </span>
           <span className='border border-[#b4ed47] rounded-md px-4'>
-            {data?.FunctLoc}
+            {data?.PlanGrp || "No data available"}
+          </span>
+        </div>
+        <div className='flex space-x-2 items-center'>
+          <span className='text-sm text-gray-700 font-semibold w-28'>
+            Planner Group Name:
+          </span>
+          <span className='border border-[#b4ed47] rounded-md px-4'>
+            {data?.PlanGrpName || "No data available"}
           </span>
         </div>
         <div className='flex space-x-2 items-center'>

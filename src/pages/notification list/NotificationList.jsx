@@ -34,7 +34,7 @@ const NotificationList = () => {
   const fetchData = async () => {
     try {
       const accessToken = localStorage.getItem("access_token");
-      const reportedBy = localStorage.getItem("username");
+      const reportedBy = localStorage.getItem("username").toUpperCase();
       console.log(accessToken, reportedBy);
       const notificationData = await fetchNotificationData(
         accessToken,
@@ -190,9 +190,9 @@ const NotificationList = () => {
       {loading ? (
         <LoadingSpinner text='Loading...' />
       ) : (
-        <div className='m-10 p-10'>
+        <div className='m-2'>
           {filteredData && filteredData.length > 0 ? (
-            <table className='table-fixed w-full border-collapse border border-[#b4ed47]'>
+            <table className='table-fixed w-full text-xs font-medium border-collapse border border-[#b4ed47]'>
               <thead>
                 <tr>
                   <th className='w-1/6 custom-border'>Notification</th>
@@ -201,6 +201,7 @@ const NotificationList = () => {
                   <th className='w-1/6 custom-border'>Functional Location </th>
                   <th className='w-1/6 custom-border'>FL Description</th>
                   <th className='w-1/6 custom-border'>Planner Group</th>
+                  <th className='w-1/6 custom-border'>Planner Group Name</th>
                   <th className='w-1/6 custom-border'>Status</th>
                   <th className='w-1/6 custom-border'>Maintaince Order</th>
                   <th className='w-1/6 custom-border'>Date</th>
@@ -221,6 +222,7 @@ const NotificationList = () => {
                     <td className='custom-border'>{item?.funn_loca}</td>
                     <td className='custom-border'>{item?.func_loca_Desc}</td>
                     <td className='custom-border'>{item?.plan_grp}</td>
+                    <td className='custom-border'>{item?.plan_grp_name}</td>
                     <td className='custom-border'>{item?.statustext}</td>
                     <td className='custom-border'>{item?.manit_order}</td>
                     <td className='custom-border'>

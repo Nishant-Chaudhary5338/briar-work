@@ -28,41 +28,7 @@ const UpdateRender = ({ data }) => {
             {data?.ZitemNo}
           </span>
         </div>
-        <div className='flex space-x-2 items-center'>
-          <span className='text-sm text-gray-700 font-semibold w-28'>
-            Description:
-          </span>
-          <span className='border border-[#b4ed47] rounded-md px-4 py-2 min-w-[200px] whitespace-pre-wrap'>
-            {editedShortText || data?.Zdesc}
-          </span>
 
-          <button
-            onClick={() => setEditPopupVisible(true)}
-            className='text-blue-500 underline'
-          >
-            Edit
-          </button>
-          {editPopupVisible && (
-            <EditPopup
-              onClose={() => setEditPopupVisible(false)}
-              onSave={(shortText, longText) => {
-                setEditedShortText(shortText);
-                setEditedLongText(longText);
-              }}
-              zNumber={zNumber}
-              initialShortText={data?.Zdesc}
-              initialLongText={data?.Desc2}
-            />
-          )}
-        </div>
-        <div className='flex space-x-2 items-center'>
-          <span className='text-sm text-gray-700 font-semibold w-48'>
-            Long Description:
-          </span>
-          <span className='border border-[#b4ed47] rounded-md px-4 py-2 min-w-[200px] whitespace-pre-wrap'>
-            {editedLongText || data?.Desc2}
-          </span>
-        </div>
         <div className='flex space-x-2 items-center'>
           <span className='text-sm text-gray-700 font-semibold w-28'>
             Equipment:
@@ -110,6 +76,49 @@ const UpdateRender = ({ data }) => {
           </span>
           <span className='border border-[#b4ed47] rounded-md px-4'>
             {data?.FunctLoc}
+          </span>
+        </div>
+        <div className='flex space-x-2 items-center'>
+          <span className='text-sm text-gray-700 font-semibold w-28'>
+            Planner Group:
+          </span>
+          <span className='border border-[#b4ed47] rounded-md px-4'>
+            {data?.FunctLoc}
+          </span>
+        </div>
+        <div className='flex space-x-2 items-center'>
+          <span className='text-sm text-gray-700 font-semibold w-28'>
+            Description:
+          </span>
+          <span className='border border-[#b4ed47] rounded-md px-4 py-2 min-w-[200px] whitespace-pre-wrap'>
+            {editedShortText || data?.Zdesc}
+          </span>
+
+          <button
+            onClick={() => setEditPopupVisible(true)}
+            className='text-blue-500 underline'
+          >
+            Edit
+          </button>
+          {editPopupVisible && (
+            <EditPopup
+              onClose={() => setEditPopupVisible(false)}
+              onSave={(shortText, longText) => {
+                setEditedShortText(shortText);
+                setEditedLongText(longText);
+              }}
+              zNumber={zNumber}
+              initialShortText={data?.Zdesc}
+              initialLongText={data?.Desc2}
+            />
+          )}
+        </div>
+        <div className='flex space-x-2 items-center'>
+          <span className='text-sm text-gray-700 font-semibold w-28'>
+            Long Description:
+          </span>
+          <span className='border border-[#b4ed47] rounded-md px-4 py-2 '>
+            {editedLongText || data?.Desc2}
           </span>
         </div>
       </div>

@@ -30,6 +30,8 @@ const ServiceInput = () => {
   const [help, setHelp] = useState([]);
   const [functionalLocation, setFunctionalLocation] = useState("");
   const [plannerGroup, setPlannerGroup] = useState([]);
+  const [CrDate, setCrDate] = useState("");
+  const [CrTime, setCrTime] = useState("");
 
   // pre-fetching serachHelp (Equipment etc)
   useEffect(() => {
@@ -94,9 +96,46 @@ const ServiceInput = () => {
     setShortDesc(e.target.value);
   };
 
+  const apiFormattedCrTime = `${CrTime}:00`;
+  console.log(apiFormattedCrTime);
   //  create entry call
   const handleSendResponse = () => {
     const createdBy = localStorage.getItem("username");
+    const formData = {
+      checkboxChecked,
+      createdBy,
+      selectedOption,
+      equipmentNo,
+      startDate,
+      startTime,
+      shortDesc,
+      savedText,
+      plannerGroup,
+      functionalLocation,
+      CrDate,
+      CrTime,
+    };
+
+    console.log(formData);
+
+    if (
+      !checkboxChecked ||
+      !createdBy ||
+      !selectedOption ||
+      !equipmentNo ||
+      !startDate ||
+      !startTime ||
+      !shortDesc ||
+      !savedText ||
+      !plannerGroup ||
+      !functionalLocation ||
+      !CrTime ||
+      !CrDate
+    ) {
+      //console.log(data);
+      alert("All fields are mandatory");
+      return;
+    }
     const data = {
       Header: {
         Breakdown: checkboxChecked,
@@ -111,6 +150,9 @@ const ServiceInput = () => {
         GenDesc1: shortDesc,
         GenDesc: savedText,
         PlanGrp: plannerGroup,
+        FuncLoc: functionalLocation,
+        CrDate: CrDate,
+        CrTime: apiFormattedCrTime,
       },
     };
     console.log(data);
@@ -202,25 +244,6 @@ const ServiceInput = () => {
                 onCheckboxChange={handleCheckboxChange}
               />
             </div>
-            <div className='flex space-x-2 mt-2 items-center'>
-              <span className=' text-sm text-gray-700 font-semibold w-28'>
-                Planner Group
-              </span>
-              <select
-                value={plannerGroup}
-                onChange={handlePlannerGroupChange}
-                className='custom-border rounded-md'
-              >
-                <option value=''>Select an Option</option>
-                <option value='N01'>Mechanical - N01</option>
-                <option value='N02'>North Site - N02</option>
-                <option value='N04'>Facilities - N03</option>
-                <option value='N06'>E, I & C - N06</option>
-                <option value='N08'>PPE Consumables - N08</option>
-                <option value='N09'>Operational - N09</option>
-                {/* Add more options as needed */}
-              </select>
-            </div>
           </div>
           <div className='space-y-2 mt-2'>
             <div className=''>
@@ -238,6 +261,29 @@ const ServiceInput = () => {
                   onTimeChange={handleStartTimeChange}
                 />
               </span>
+            </div>
+            <div className='flex space-x-6 items-center'>
+              <span className='w-24 text-sm text-gray-700 font-semibold'>
+                Cr Time
+              </span>
+              <input
+                onChange={(e) => setCrTime(e.target.value)}
+                value={CrTime}
+                className='custom-border rounded-md'
+                type='time'
+              />
+            </div>
+
+            <div className='flex space-x-6 items-center'>
+              <span className='w-24 text-sm text-gray-700 font-semibold'>
+                Cr Date
+              </span>
+              <input
+                onChange={(e) => setCrDate(e.target.value)}
+                value={CrDate}
+                className='custom-border rounded-md'
+                type='date'
+              />
             </div>
           </div>
         </div>
@@ -280,6 +326,25 @@ const ServiceInput = () => {
               <span className='border border-[#b4ed47] w-30 h-8 p-[2px] rounded-md pr-20'>
                 {functionalLocation}
               </span>
+            </div>
+            <div className='flex space-x-2 mt-2 items-center'>
+              <span className=' text-sm text-gray-700 font-semibold w-28'>
+                Planner Group
+              </span>
+              <select
+                value={plannerGroup}
+                onChange={handlePlannerGroupChange}
+                className='custom-border rounded-md'
+              >
+                <option value=''>Select an Option</option>
+                <option value='N01'>Mechanical - N01</option>
+                <option value='N02'>North Site - N02</option>
+                <option value='N04'>Facilities - N03</option>
+                <option value='N06'>E, I & C - N06</option>
+                <option value='N08'>PPE Consumables - N08</option>
+                <option value='N09'>Operational - N09</option>
+                {/* Add more options as needed */}
+              </select>
             </div>
             <div className='space-x-4 text-sm text-gray-700 font-semibold flex items-center'>
               <span>General Description</span>

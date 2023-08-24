@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LogoutButton from "../small-components/LogoutButton";
+import { useParams } from "react-router-dom";
+import { decode } from "js-base64";
 
 const StockUpdate = () => {
+  const [data, setData] = useState("");
+  const { MaterialNumber } = useParams();
+
+  useEffect(() => {
+    try {
+      const decodedMaterialNumber = decode(MaterialNumber);
+      const decodedData = JSON.parse(decodedMaterialNumber);
+      setData(decodedData);
+      console.log(decodedData);
+
+      // Rest of your StockUpdate component code
+    } catch (error) {
+      console.error("Error parsing data:", error);
+      // Handle error, e.g., show an error message
+    }
+  }, [MaterialNumber]);
+  if (!data) {
+    return <div>Loading...</div>; // Show loading state until data is ready
+  }
   return (
     <div className='bg-gray-50'>
       <div className='bg-[#71a311] px-2 text-xl h-12 flex items-center justify-between'>
@@ -15,23 +36,31 @@ const StockUpdate = () => {
               Material
             </span>
             <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
-              P1
+              {data.MaterialCode}
             </span>
           </div>
           <div className='flex space-x-2 items-center'>
             <span className=' text-sm text-gray-700 font-semibold w-28'>
-              Plant
+              Material Description
             </span>
             <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
-              P1
+              {data.MaterialDesc}
             </span>
           </div>
           <div className='flex space-x-2 items-center'>
             <span className=' text-sm text-gray-700 font-semibold w-28'>
-              Location
+              Storage Location
             </span>
             <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
-              P1
+              {data.StorageLoc}
+            </span>
+          </div>
+          <div className='flex space-x-2 items-center'>
+            <span className=' text-sm text-gray-700 font-semibold w-28'>
+              Batch No.
+            </span>
+            <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
+              {data.BatchNo || "NA"}
             </span>
           </div>
           <div className='flex space-x-2 items-center'>
@@ -39,7 +68,7 @@ const StockUpdate = () => {
               Spec. Stock
             </span>
             <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
-              P1
+              NA
             </span>
           </div>
           <div className='flex space-x-2 items-center'>
@@ -47,15 +76,15 @@ const StockUpdate = () => {
               Quantity
             </span>
             <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
-              P1
+              {data.UnrestQty}
             </span>
           </div>
           <div className='flex space-x-2 items-center'>
             <span className=' text-sm text-gray-700 font-semibold w-28'>
-              Extra
+              Base Unit
             </span>
             <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
-              P1
+              {data.Uom}
             </span>
           </div>
         </div>

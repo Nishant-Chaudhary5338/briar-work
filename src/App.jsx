@@ -21,7 +21,7 @@ const App = () => {
       <Route path='/approve' element={<NotificationApprove />} />
       <Route path='/approve/:NotificationNumber' element={<ApprovePage />} />
       <Route path='/stockList' element={<StockList />} />
-      <Route path='/stockUpdate' element={<StockUpdate />} />
+      <Route path='/stockUpdate/:MaterialNumber' element={<StockUpdate />} />
     </Routes>
   );
 };

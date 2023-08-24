@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import LogoutButton from "../../small-components/LogoutButton";
 import { useNavigate } from "react-router-dom";
-import StockReportFormPopup from "./StockReportFormPopup";
+import StockReportForm from "./StockReportForm";
+import { encode } from "js-base64";
 
 const StockList = () => {
   const navigate = useNavigate();
-  const [showPopup, setShowPopup] = useState(true);
   const [reportData, setReportData] = useState([]);
-
-  const handleClosePopup = () => {
-    setShowPopup(false);
-  };
 
   const handleDataReceived = (response) => {
     setReportData(response);
@@ -23,14 +19,11 @@ const StockList = () => {
         <h1 className='text-white font-semibold'>Stock/Material List</h1>
         <LogoutButton />
       </div>
-
-      {showPopup ? (
-        <StockReportFormPopup
-          onClose={handleClosePopup}
-          onDataReceived={handleDataReceived}
-        />
-      ) : (
-        <div className='mx-2'>
+      <div>
+        <StockReportForm onDataReceived={handleDataReceived} />
+      </div>
+      <div className='mx-2'>
+        {reportData.length > 0 ? ( // Check if reportData has items
           <table className='border-collapse w-full mt-4 table-fixed text-center'>
             <thead>
               <tr className='text-xs'>
@@ -46,7 +39,9 @@ const StockList = () => {
               {reportData.map((item, index) => (
                 <tr
                   key={index}
-                  onClick={() => navigate("/stockUpdate")}
+                  onClick={() =>
+                    navigate(`/stockUpdate/${encode(JSON.stringify(item))}`)
+                  }
                   className='hover:bg-[#b4ed47]'
                 >
                   <td className='custom-border'>{item.MaterialCode}</td>
@@ -59,14 +54,12 @@ const StockList = () => {
               ))}
             </tbody>
           </table>
-        </div>
-      )}
+        ) : (
+          <p className='text-center font-semibold'>No data available yet.</p>
+        )}
+      </div>
     </div>
   );
 };
 
 export default StockList;
-
-/*
-  
-    */

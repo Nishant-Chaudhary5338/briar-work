@@ -207,7 +207,7 @@ const ServiceInput = () => {
 
   return (
     <div>
-      <div className='sm:flex justify-between'>
+      <div className='sm:flex 2xl:mx-[10%] 2xl:text-lg justify-between'>
         <div className=''>
           <div className='sm:space-x-16 flex'></div>
           <div>
@@ -219,7 +219,7 @@ const ServiceInput = () => {
               onChange={handleCallNumber}
               className='border border-[#b4ed47] p-[2px] rounded-md pr-20'
             ></input>
-  */}
+              */}
             </div>
             <div className='flex space-x-2 items-center'>
               <span className=' text-sm text-gray-700 font-semibold w-28'>

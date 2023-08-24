@@ -3,6 +3,7 @@ import axios from "axios";
 import { PiMagnifyingGlassDuotone } from "react-icons/pi";
 import TokenExpiredPopup from "./TokenExpiredPopup";
 import LoadingSpinner from "./LoadingSpinner";
+import { useNavigate } from "react-router-dom";
 
 const SearchPopup = ({
   onClose,
@@ -46,6 +47,13 @@ const SearchPopup = ({
       setLoading(false);
     }
   }, [data]);
+  const access_token = localStorage.getItem("access_token");
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!access_token) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div
@@ -71,7 +79,7 @@ const SearchPopup = ({
             <PiMagnifyingGlassDuotone size={18} color='#b4ed47' />
           </span>
         </div>
-        <div style={{ overflowY: "auto" }} className='bg-gray-50 mt-4'>
+        <div style={{ overflowY: "auto" }} className='bg-gray-50 h-3/4 mt-4'>
           {loading ? (
             <LoadingSpinner text='Loading...' />
           ) : (

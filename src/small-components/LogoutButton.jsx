@@ -17,7 +17,7 @@ const LogoutButton = () => {
   return (
     <button
       onClick={handleLogout}
-      className='flex items-center m-2 px-2 py-2 text-white space-x-1 text-xs font-semibold rounded-md shadow-md bg-red-500'
+      className='flex items-center px-2 py-2 text-white space-x-1 text-xs font-semibold rounded-md shadow-md bg-red-500'
     >
       <span>LogOut</span>
       <span>

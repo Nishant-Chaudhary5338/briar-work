@@ -41,20 +41,23 @@ const LoginPage = () => {
   };
 
   return (
-    <div className='container mx-auto flex flex-col justify-center items-center md:mt-0'>
+    <div className='container mx-auto max-w-screen-2xl flex flex-col justify-center items-center md:mt-0'>
       {/* Left side - Image */}
-      <div className='max-h-40 w-auto mb-10 md:mb-0'>
+      <div className='w-auto mb-10 md:mb-0'>
         <img
           src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyj4tPBkrDqJFWKXZovNHieI5xiuov4-ZXHg&usqp=CAU'
           alt='Login Image'
-          className='object-contain'
+          className='object-contain mx-auto xl:w-96 2xl:w-[600px]'
         />
       </div>
 
       {/* Right side - Login Form */}
-      <div className='w-full md:w-1/2 flex items-center shadow-2xl bg-gray-50 px-4 sm:mt-20 md:mt-0 py-10 rounded-lg justify-center'>
-        <form onSubmit={(e) => handleLogin(e)} className='w-full max-w-md'>
-          <h2 className='text-3xl font-bold mb-4'>Login</h2>
+      <div className='w-full md:w-1/2  h-96 2xl:h-[600px] 2xl:py-20 flex items-center shadow-2xl bg-gray-50 px-4 sm:mt-20 md:mt-0 rounded-lg justify-center'>
+        <form
+          onSubmit={(e) => handleLogin(e)}
+          className='w-full max-w-md space-y-10'
+        >
+          <h2 className='text-3xl 2xl:text-5xl font-bold mb-4'>Login</h2>
 
           {error && (
             <div className='bg-red-200 text-red-800 p-2 rounded mb-4'>
@@ -63,7 +66,10 @@ const LoginPage = () => {
           )}
 
           <div className='mb-4'>
-            <label htmlFor='username' className='block mb-1'>
+            <label
+              htmlFor='username'
+              className='block mb-1 2xl:text-2xl text-xl'
+            >
               Username
             </label>
             <input
@@ -71,12 +77,15 @@ const LoginPage = () => {
               id='username'
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className='w-full px-4 py-2 border border-gray-300 rounded-lg'
+              className='w-full px-4 py-2 custom-border rounded-lg'
             />
           </div>
 
           <div className='mb-4'>
-            <label htmlFor='password' className='block mb-1'>
+            <label
+              htmlFor='password'
+              className='block mb-1 2xl:text-2xl text-xl'
+            >
               Password
             </label>
             <input
@@ -84,7 +93,7 @@ const LoginPage = () => {
               id='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className='w-full px-4 py-2 border border-gray-300 rounded-lg'
+              className='w-full px-4 py-2 custom-border rounded-lg'
             />
           </div>
 

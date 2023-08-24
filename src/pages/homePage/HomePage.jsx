@@ -15,8 +15,8 @@ const HomePage = () => {
         <h4 className='text-white text-2xl font-semibold'>My Home</h4>
         <LogoutButton />
       </div>
-      <div className='bg-gray-100 p-4 h-full sm:h-screen'>
-        <div className='flex flex-wrap justify-center sm:justify-between'>
+      <div className='bg-gray-100 p-4 h-screen'>
+        <div className='flex flex-wrap'>
           <Card
             title='Service Call Entry'
             onClick={() => navigate("/entry")}

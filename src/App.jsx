@@ -2,13 +2,13 @@ import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import LoginPage from "./pages/loginPage/LoginPage";
 import HomePage from "./pages/homePage/HomePage";
-import StockList from "./components/StockList";
 import StockUpdate from "./components/StockUpdate";
 import CreateEntry from "./pages/create Entry/CreateEntry";
 import NotificationList from "./pages/notification list/NotificationList";
 import UpdatePage from "./pages/update page/UpdatePage";
 import ApprovePage from "./pages/approve page/ApprovePage";
 import NotificationApprove from "./pages/notification approve/NotificationApprove";
+import StockList from "./pages/Stock page/StockList";
 
 const App = () => {
   return (

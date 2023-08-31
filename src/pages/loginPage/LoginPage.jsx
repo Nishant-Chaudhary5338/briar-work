@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../api/login";
+import { accessTiles } from "../../api/access";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -32,7 +33,24 @@ const LoginPage = () => {
           navigation("/");
         }, 10 * 60 * 1000); // 10 minutes in milliseconds
 
-        navigation("home");
+        try {
+          const accessToken = localStorage.getItem("access_token");
+          const username = localStorage.getItem("username");
+
+          const AccessResponse = await accessTiles(accessToken, username);
+          console.log(AccessResponse);
+          localStorage.setItem("access_data", JSON.stringify(AccessResponse));
+
+          setTimeout(() => {
+            localStorage.removeItem("access_data");
+            console.log("Access_data expired. Removed from local storage.");
+            navigation("/");
+          }, 10 * 60 * 1000); // 10 minutes in milliseconds
+
+          navigation("home");
+        } catch (error) {
+          console.log(error);
+        }
       }
     } catch (error) {
       console.log(error);

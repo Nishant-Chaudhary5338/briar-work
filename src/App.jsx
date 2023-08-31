@@ -9,19 +9,35 @@ import UpdatePage from "./pages/update page/UpdatePage";
 import ApprovePage from "./pages/approve page/ApprovePage";
 import NotificationApprove from "./pages/notification approve/NotificationApprove";
 import StockList from "./pages/Stock page/StockList";
+import NotFoundPage from "./pages/not found/NotFoundPage";
 
 const App = () => {
+  const accessData = JSON.parse(localStorage.getItem("access_data"));
+  const zv_web_AccType = accessData && accessData.zv_web_AccType;
+  const pmNotifCr = zv_web_AccType?.PmNotifCr === "true";
+  const pmNotifRep = zv_web_AccType?.PmNotifRep === "true";
+  const pmNotifSuper = zv_web_AccType?.PmNotifSuper === "true";
+  const stockTransf = zv_web_AccType?.StockTransf === "true";
   return (
     <Routes>
       <Route path='/' element={<LoginPage />} />
       <Route path='/home' element={<HomePage />} />
-      <Route path='/entry' element={<CreateEntry />} />
-      <Route path='/list' element={<NotificationList />} />
-      <Route path='/update/:NotificationNumber' element={<UpdatePage />} />
-      <Route path='/approve' element={<NotificationApprove />} />
-      <Route path='/approve/:NotificationNumber' element={<ApprovePage />} />
-      <Route path='/stockList' element={<StockList />} />
-      <Route path='/stockUpdate/:MaterialNumber' element={<StockUpdate />} />
+      {pmNotifCr && <Route path='/entry' element={<CreateEntry />} />}
+      {pmNotifRep && <Route path='/list' element={<NotificationList />} />}
+      {pmNotifRep && (
+        <Route path='/update/:NotificationNumber' element={<UpdatePage />} />
+      )}
+      {pmNotifSuper && (
+        <Route path='/approve' element={<NotificationApprove />} />
+      )}
+      {pmNotifSuper && (
+        <Route path='/approve/:NotificationNumber' element={<ApprovePage />} />
+      )}
+      {stockTransf && <Route path='/stockList' element={<StockList />} />}
+      {stockTransf && (
+        <Route path='/stockUpdate/:MaterialNumber' element={<StockUpdate />} />
+      )}
+      <Route path='*' element={<NotFoundPage />} />
     </Routes>
   );
 };

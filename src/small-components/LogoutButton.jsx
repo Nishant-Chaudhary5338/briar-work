@@ -9,6 +9,7 @@ const LogoutButton = () => {
     // Clear access_token and username from local storage
     localStorage.removeItem("access_token");
     localStorage.removeItem("username");
+    localStorage.removeItem("access_data");
 
     // Navigate to the login page
     navigate("/");

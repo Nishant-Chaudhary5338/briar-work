@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import LogoutButton from "../small-components/LogoutButton";
 import { useParams } from "react-router-dom";
 import { decode } from "js-base64";
+import HomeButton from "../small-components/HomeButton";
 
 const StockUpdate = () => {
   const [data, setData] = useState("");
@@ -26,6 +27,7 @@ const StockUpdate = () => {
   return (
     <div className='bg-gray-50'>
       <div className='bg-[#71a311] px-2 text-xl h-12 flex items-center justify-between'>
+        <HomeButton />
         <h1 className='text-white font-semibold'>Stock Updates</h1>
         <LogoutButton />
       </div>

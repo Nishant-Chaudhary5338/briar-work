@@ -3,11 +3,22 @@ import baseUrl from '../api/apiConfig';
 
 export const getStockReport = async (Material, MatGrp, StgeLoc) => {
   try {
-    const params = {
-      Material: Material,
-      MatGrp: MatGrp,
-      StgeLoc: StgeLoc,
-    };
+    const params = {};
+
+    if (Material) {
+      params.Material = Material;
+    }
+
+    if (MatGrp) {
+      params.MatGrp = MatGrp;
+    }
+
+    if (StgeLoc) {
+      params.StgeLoc = StgeLoc;
+    } else {
+      // If StgeLoc is empty, set it to "NA"
+      params.StgeLoc = "NA";
+    }
 
     const access_token = localStorage.getItem("access_token");
 

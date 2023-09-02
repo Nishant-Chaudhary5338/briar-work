@@ -38,7 +38,7 @@ const StockUpdate = () => {
               Material
             </span>
             <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
-              {data.MaterialCode}
+              {data.material}
             </span>
           </div>
           <div className='flex space-x-2 items-center'>
@@ -46,7 +46,7 @@ const StockUpdate = () => {
               Material Description
             </span>
             <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
-              {data.MaterialDesc}
+              {data.material_desc}
             </span>
           </div>
           <div className='flex space-x-2 items-center'>
@@ -54,7 +54,7 @@ const StockUpdate = () => {
               Storage Location
             </span>
             <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
-              {data.StorageLoc}
+              {data.storage_location}
             </span>
           </div>
           <div className='flex space-x-2 items-center'>
@@ -62,7 +62,7 @@ const StockUpdate = () => {
               Batch No.
             </span>
             <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
-              {data.BatchNo || "NA"}
+              {data.batch || "NA"}
             </span>
           </div>
           <div className='flex space-x-2 items-center'>
@@ -78,7 +78,7 @@ const StockUpdate = () => {
               Quantity
             </span>
             <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
-              {data.UnrestQty}
+              {data.STOCK_QTY}
             </span>
           </div>
           <div className='flex space-x-2 items-center'>
@@ -86,7 +86,7 @@ const StockUpdate = () => {
               Base Unit
             </span>
             <span className='border border-[#b4ed47] p-[2px] rounded-md pr-20'>
-              {data.Uom}
+              {data.base_unit}
             </span>
           </div>
         </div>

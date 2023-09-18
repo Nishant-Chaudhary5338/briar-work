@@ -1,23 +1,20 @@
 import axios from "axios";
 import baseUrl from '../api/apiConfig';
 
-export const getStockReport = async (Material, MatGrp, StgeLoc) => {
+export const getStockReport = async (material, material_group, storage_location) => {
   try {
     const params = {};
 
-    if (Material) {
-      params.Material = Material;
+    if (material) {
+      params.material = material;
     }
 
-    if (MatGrp) {
-      params.MatGrp = MatGrp;
+    if (material_group) {
+      params.material_group = material_group;
     }
 
-    if (StgeLoc) {
-      params.StgeLoc = StgeLoc;
-    } else {
-      // If StgeLoc is empty, set it to "NA"
-      params.StgeLoc = "NA";
+    if (storage_location) {
+      params.storage_location = storage_location;
     }
 
     const access_token = localStorage.getItem("access_token");

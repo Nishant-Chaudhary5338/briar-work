@@ -10,6 +10,7 @@ import ApprovePage from "./pages/approve page/ApprovePage";
 import NotificationApprove from "./pages/notification approve/NotificationApprove";
 import StockList from "./pages/Stock page/StockList";
 import NotFoundPage from "./pages/not found/NotFoundPage";
+import AzureADAuth from "./auth/AzureADAuth";
 
 const App = () => {
   const accessData = JSON.parse(localStorage.getItem("access_data"));
